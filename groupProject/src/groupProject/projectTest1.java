@@ -1,6 +1,7 @@
 package groupProject;
 import javafx.application.Application; 
-import javafx.event.ActionEvent; 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler; 
 import javafx.scene.Scene; 
 import javafx.scene.control.Button; 
@@ -10,10 +11,7 @@ import javafx.stage.Stage;
 
 		public class projectTest1 extends Application{
 			
-			
-			public projectTest1() {
-				
-			}
+			Button button1;
 
 			public static void main(String[] args) {
 				launch(args); // launch goes into Application and sets up this program as a JavaFX application.
@@ -31,10 +29,22 @@ import javafx.stage.Stage;
 				//Application is going to call start, therefore override
 				
 				primaryStage.setTitle("This is the login screen");
-				Button button1 = new Button();
+				button1 = new Button();
 				button1.setText("click here for baklavas");
 				
+				//lambda expression
+				button1.setOnAction(event -> { System.out.println("Here is a baklava"); } );
 				
+				//this is the same code as the lambda expression
+				/*button1.setOnAction(new EventHandler<ActionEvent>()  {
+					@Override
+					public void handle(ActionEvent event) {
+						System.out.println("Here is a baklava");
+					}
+				} );
+				*/
+				
+
 				StackPane layout = new StackPane();
 				layout.getChildren().add(button1);
 				
@@ -42,11 +52,8 @@ import javafx.stage.Stage;
 				primaryStage.setScene(scene);
 				primaryStage.show();
 				
-				
-				
-				
 			}
-
+			
 		
 	}
 	

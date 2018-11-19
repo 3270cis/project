@@ -8,7 +8,7 @@ public class postgres {
 	public static void main(String[] args) {
 		try {
 			Class.forName("org.postgresql.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/k", "postgres", "admin");
 			System.out.println("Database connected");
 			PreparedStatement statement =connection.prepareStatement("select* from flight");
 			
