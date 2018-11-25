@@ -66,25 +66,32 @@ public class MainMenuTest extends Application{
 		closeButton.setOnAction(event -> closeProgram());*/
 		
 		GridPane grid = new GridPane();
-		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.setPadding(new Insets(25, 25, 25, 25));
 		grid.setVgap(10);
 		grid.setHgap(10);
 		
 		Label usernameLabel = new Label("Username: ");
-		grid.setConstraints(usernameLabel, 0, 0);
+		GridPane.setConstraints(usernameLabel, 0, 0);
 		
 		TextField usernameInput = new TextField();
-		grid.setConstraints(usernameInput, 1, 0);
+		GridPane.setConstraints(usernameInput, 1, 0);
 		
 		Label passwordLabel = new Label("Password: ");
-		grid.setConstraints(usernameLabel, 0, 1);
+		GridPane.setConstraints(passwordLabel, 0, 1);
 		
 		TextField passwordInput = new TextField();
-		grid.setConstraints(passwordInput, 1, 0);
+		passwordInput.setPromptText("password");
+		GridPane.setConstraints(passwordInput, 1, 1);
 		
 		
+		Button loginButton = new Button("Login");
+		GridPane.setConstraints(loginButton, 1, 2);
 		
-		/*window.setScene(loginPage);*/
+		grid.getChildren().addAll(usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton);
+		
+		
+		Scene scene = new Scene(grid, 600, 300);
+		window.setScene(scene);
 		window.setTitle("HelloWorld Airlines Login");
 		window.show();
 		
