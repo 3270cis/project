@@ -90,7 +90,7 @@ public class MainMenuTest extends Application{
 		grid.getChildren().addAll(usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton);
 		
 		
-		Scene scene = new Scene(grid, 600, 300);
+		Scene scene = new Scene(grid, 350, 200);
 		window.setScene(scene);
 		window.setTitle("HelloWorld Airlines Login");
 		window.show();
