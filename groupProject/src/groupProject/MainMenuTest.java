@@ -70,10 +70,14 @@ public class MainMenuTest extends Application{
 		grid.setVgap(10);
 		grid.setHgap(10);
 		
+		Label helloWorldLabel = new Label("HelloWorld");
+		helloWorldLabel.setStyle("-fx-font-size: 28pt");	
+		
 		Label usernameLabel = new Label("Username: ");
 		GridPane.setConstraints(usernameLabel, 0, 0);
 		
 		TextField usernameInput = new TextField();
+		usernameInput.setPromptText("UserID");
 		GridPane.setConstraints(usernameInput, 1, 0);
 		
 		Label passwordLabel = new Label("Password: ");
@@ -87,7 +91,7 @@ public class MainMenuTest extends Application{
 		Button loginButton = new Button("Login");
 		GridPane.setConstraints(loginButton, 1, 2);
 		
-		grid.getChildren().addAll(usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton);
+		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton);
 		
 		
 		Scene scene = new Scene(grid, 350, 200);
@@ -110,5 +114,6 @@ public class MainMenuTest extends Application{
 			Platform.exit();
 		}
 	}
-
+	
+	
 }
