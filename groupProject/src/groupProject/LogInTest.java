@@ -112,6 +112,7 @@ public class LogInTest extends Application{
 		
 	}
 	
+	//this method calls the AlertBoxText.java class. It confirms the user if he/she wants to exit the program.
 	public void closeProgram() {
 		Boolean answer = AlertBoxTest.display("Exit", "Close the program?");
 		if(answer) {
