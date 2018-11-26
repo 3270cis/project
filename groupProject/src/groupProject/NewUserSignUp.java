@@ -66,7 +66,7 @@ public class NewUserSignUp extends Application {
 	TextField usernameInput = new TextField();
 	TextField passwordInput = new TextField();
 	TextField emailInput = new TextField();
-	emailInput.setPromptText("example@emailDomain.com");
+	emailInput.setPromptText("example@email.com");
 	TextField securityQuestionInput = new TextField();
 	TextField securityQuestionAnswerInput = new TextField();
 	
@@ -87,17 +87,25 @@ public class NewUserSignUp extends Application {
 	GridPane.setConstraints(zipCodeInput, 0, 14);
     GridPane.setConstraints(phoneNumber, 0, 15);
     GridPane.setConstraints(phoneNumberInput, 0, 16);
-	
-	
-	
-	
+    
+	GridPane.setConstraints(username, 1, 1);
+	GridPane.setConstraints(usernameInput, 1, 2);;
+	GridPane.setConstraints(password, 1, 3);
+    GridPane.setConstraints(passwordInput, 1, 4);;
+    GridPane.setConstraints(email, 1, 5);
+	GridPane.setConstraints(emailInput, 1, 6);;
+	GridPane.setConstraints(securityQuestion, 1, 7);
+    GridPane.setConstraints(securityQuestionInput, 1, 8);
+    GridPane.setConstraints(securityQuestionAnswer, 1, 9);
+    GridPane.setConstraints(securityQuestionAnswerInput, 1, 10);
 	
 	
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
-			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput );
+			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
+			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput );
 	
 	
-	Scene scene = new Scene(grid, 700, 500);
+	Scene scene = new Scene(grid, 300, 500);
 	window.setScene(scene);
 	window.setTitle("HelloWorld Register");
 	window.show();
