@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,15 +23,18 @@ public class NewUserSignUp extends Application {
 		
 		super.init();
 	}
-
+	
+	//starts the program
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
 	window = primaryStage;
 	
+	//creates the gridpane window
 	GridPane grid = new GridPane();
 	grid.setPadding(new Insets(10, 10, 10,10));
 	
+	//creates all the labels
 	Label firstName = new Label("first name : ");
 	Label lastName = new Label("last name : ");
 	Label SSN = new Label("SSN : ");
@@ -46,6 +50,7 @@ public class NewUserSignUp extends Application {
 	Label securityQuestion = new Label("security question : ");
 	Label securityQuestionAnswer = new Label("security question answer: ");
 	
+	//creates all the text box with examples inside the box fields
 	TextField firstNameInput = new TextField();
 	firstNameInput.setPromptText("Jane");
 	TextField lastNameInput = new TextField();
@@ -64,13 +69,14 @@ public class NewUserSignUp extends Application {
 	phoneNumberInput.setPromptText("000-000-0000");
 	
 	TextField usernameInput = new TextField();
-	TextField passwordInput = new TextField();
+	PasswordField passwordInput = new PasswordField();
 	TextField emailInput = new TextField();
 	emailInput.setPromptText("example@email.com");
 	TextField securityQuestionInput = new TextField();
 	TextField securityQuestionAnswerInput = new TextField();
 	
-	
+	//saying where each textfield and labels should go
+	//how do you make it pretty?
 	GridPane.setConstraints(firstName, 0, 1);
 	GridPane.setConstraints(firstNameInput, 0, 2);
 	GridPane.setConstraints(lastName, 0, 3);;
@@ -99,12 +105,12 @@ public class NewUserSignUp extends Application {
     GridPane.setConstraints(securityQuestionAnswer, 1, 9);
     GridPane.setConstraints(securityQuestionAnswerInput, 1, 10);
 	
-	
+	//adding all the textfields and labels into the grid 
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
 			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
 			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput );
 	
-	
+	//creating a scene of a certain size, and adding the grid on it
 	Scene scene = new Scene(grid, 300, 500);
 	window.setScene(scene);
 	window.setTitle("HelloWorld Register");

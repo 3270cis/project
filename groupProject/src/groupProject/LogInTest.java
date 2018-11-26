@@ -86,7 +86,7 @@ public class LogInTest extends Application{
 		Label passwordLabel = new Label("Password: ");
 		GridPane.setConstraints(passwordLabel, 1, 2);
 		
-		TextField passwordInput = new TextField();
+		PasswordField passwordInput = new PasswordField();
 		passwordInput.setPromptText("password");
 		GridPane.setConstraints(passwordInput, 2, 2);
 		
@@ -97,20 +97,19 @@ public class LogInTest extends Application{
 		GridPane.setConstraints(newUserButton, 3, 3);
 		
 		
+		
+		
 		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton, newUserButton);
 		
-		
-		Scene scene = new Scene(grid, 500, 300);
+		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);
 		window.setTitle("HelloWorld Airlines Login");
 		window.show();
 		
 		window.setOnCloseRequest(event -> {
 			event.consume(); //need to consume to make sure it doesn't close the program when the user clicks 'No' 
-			closeProgram();
+			closeProgram(); //close program method
 		});
-		
-	
 		
 	}
 	
