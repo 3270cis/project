@@ -1,4 +1,4 @@
-package groupProject;
+package GUI;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
