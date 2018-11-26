@@ -1,25 +1,16 @@
 package backend;
-import java.util.Scanner;
+
+
+
 public class Customer extends User {
-
-	public static void main(String[] args) {
-
-	Scanner input = new Scanner(System.in);
 	
+	//WHAT DOES THE CUSTOMER NEED TO HAVE ?
+	//it already inherits the User class.
 	
-	String firstname, lastname, username, password, email,SSN, address;
-	firstname = input.nextLine();
-	lastname = input.nextLine();
-	username = input.nextLine();
-	password = input.nextLine();
-	email = input.nextLine();
-	SSN = input.nextLine();
-	address = input.nextLine();
-	
-	
-	
-	
-
+	Customer(){
+		
 	}
+	
+
 
 }

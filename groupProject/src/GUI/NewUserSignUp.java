@@ -3,6 +3,7 @@ package GUI;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -33,6 +34,10 @@ public class NewUserSignUp extends Application {
 	//creates the gridpane window
 	GridPane grid = new GridPane();
 	grid.setPadding(new Insets(10, 10, 10,10));
+	
+	Button createAcctButton = new Button("Create Account");
+	GridPane.setConstraints(createAcctButton, 1, 17);
+	
 	
 	//creates all the labels
 	Label firstName = new Label("first name : ");
@@ -108,7 +113,7 @@ public class NewUserSignUp extends Application {
 	//adding all the textfields and labels into the grid 
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
 			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
-			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput );
+			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton );
 	
 	//creating a scene of a certain size, and adding the grid on it
 	Scene scene = new Scene(grid, 300, 500);
