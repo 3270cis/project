@@ -1,4 +1,4 @@
-package GUI;
+package groupProject;
 import com.sun.javafx.scene.SceneEventDispatcher;
 
 import javafx.application.Application;

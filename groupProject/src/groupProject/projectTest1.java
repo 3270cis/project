@@ -1,4 +1,4 @@
-package GUI;
+package groupProject;
 import javafx.application.Application; 
 import javafx.event.ActionEvent;
 import javafx.event.Event;

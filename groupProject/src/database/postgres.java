@@ -15,7 +15,7 @@ public class postgres {
 			//hafsah connectivity: "jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin"
 			System.out.println("Database connected");
 			
-			PreparedStatement statement = connection.prepareStatement("select from User");
+			PreparedStatement statement = connection.prepareStatement("select* from flight");
 			
 			statement.executeQuery();
 			

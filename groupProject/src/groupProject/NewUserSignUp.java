@@ -1,4 +1,4 @@
-package GUI;
+package groupProject;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
