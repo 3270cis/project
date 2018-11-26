@@ -97,7 +97,7 @@ public class LogIn extends Application{
 		Button newUserButton = new Button("Register");
 		GridPane.setConstraints(newUserButton, 3, 3);
 		
-		//register new user button goes should bring up the NewUserSignUp window
+		//"register" button should bring up the NewUserSignUp window
 		newUserButton.setOnAction(event -> {
 			NewUserSignUp signUp = new NewUserSignUp();
 			try {
@@ -125,7 +125,7 @@ public class LogIn extends Application{
 	
 	//this method calls the AlertBoxText.java class. It confirms the user if he/she wants to exit the program.
 	public void closeProgram() {
-		Boolean answer = AlertBoxTest.display("Exit", "Close the program?");
+		Boolean answer = AlertBox.display("Exit", "Close the program?");
 		if(answer) {
 			Platform.exit();
 		}

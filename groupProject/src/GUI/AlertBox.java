@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AlertBoxTest {
+public class AlertBox {
 	
 	
 	//THIS CODE IS FOR CONFIRMING IF THE USER WANTS TO EXIT THE APPLICATION
