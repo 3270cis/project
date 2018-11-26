@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class LogInTest extends Application{
+public class LogIn extends Application{
 	
 	Stage window;
 	/*Scene loginPage;
