@@ -9,21 +9,21 @@ public class postgres {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin");
 			
 			System.out.println("Database connected");
 			
-			PreparedStatement statement = connection.prepareStatement("select from User");
+			PreparedStatement statement = connection.prepareStatement("select* from flight");
 			
 			statement.executeQuery();
 			
 			
-			/*ResultSet resultSet = statement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
 			while (resultSet.next())
 			      System.out.println(resultSet.getInt(1) + "\t" +
 			        resultSet.getString(2));
-		*/
+		
 			    // Close the connection
 			    //connection.close();
 
