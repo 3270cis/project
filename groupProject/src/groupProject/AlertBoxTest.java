@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 public class AlertBoxTest {
 	
+	
+	//THIS CODE IS FOR CONFIRMING IF THE USER WANTS TO EXIT THE APPLICATION
+	
 	static boolean answer;
 	
 	public static boolean display(String title, String message) {

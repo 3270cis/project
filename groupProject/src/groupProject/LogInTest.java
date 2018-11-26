@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class MainMenuTest extends Application{
+public class LogInTest extends Application{
 	
 	Stage window;
 	/*Scene loginPage;
@@ -66,35 +66,39 @@ public class MainMenuTest extends Application{
 		closeButton.setOnAction(event -> closeProgram());*/
 		
 		GridPane grid = new GridPane();
-		grid.setPadding(new Insets(25, 25, 25, 25));
-		grid.setVgap(10);
-		grid.setHgap(10);
+		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.setVgap(0);
+		grid.setHgap(0);
 		
-		Label helloWorldLabel = new Label("HelloWorld");
-		helloWorldLabel.setStyle("-fx-font-size: 28pt");	
+		Label helloWorldLabel = new Label("HelloWorld Airlines");
+		helloWorldLabel.setStyle("-fx-font-size: 28pt");
+		helloWorldLabel.setAlignment(Pos.TOP_CENTER);
 		
 		Label usernameLabel = new Label("Username: ");
-		GridPane.setConstraints(usernameLabel, 0, 0);
+		GridPane.setConstraints(usernameLabel, 0, 2);
 		
 		TextField usernameInput = new TextField();
 		usernameInput.setPromptText("UserID");
-		GridPane.setConstraints(usernameInput, 1, 0);
+		GridPane.setConstraints(usernameInput, 0, 1);
 		
 		Label passwordLabel = new Label("Password: ");
-		GridPane.setConstraints(passwordLabel, 0, 1);
+		GridPane.setConstraints(passwordLabel, 1, 2);
 		
 		TextField passwordInput = new TextField();
 		passwordInput.setPromptText("password");
-		GridPane.setConstraints(passwordInput, 1, 1);
-		
+		GridPane.setConstraints(passwordInput, 2, 2);
 		
 		Button loginButton = new Button("Login");
-		GridPane.setConstraints(loginButton, 1, 2);
+		GridPane.setConstraints(loginButton, 2, 3);
 		
-		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton);
+		Button newUserButton = new Button("Register");
+		GridPane.setConstraints(newUserButton, 3, 3);
 		
 		
-		Scene scene = new Scene(grid, 350, 200);
+		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton, newUserButton);
+		
+		
+		Scene scene = new Scene(grid, 500, 300);
 		window.setScene(scene);
 		window.setTitle("HelloWorld Airlines Login");
 		window.show();
@@ -114,6 +118,8 @@ public class MainMenuTest extends Application{
 			Platform.exit();
 		}
 	}
+	
+	
 	
 	
 }
