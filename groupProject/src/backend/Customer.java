@@ -16,10 +16,6 @@ public class Customer extends User {
 	SSN = input.nextLine();
 	address = input.nextLine();
 	
-	User u1 = new User(firstname, lastname, username, password, email, SSN,  address);
-
-	
-	
 	
 	
 	
