@@ -68,6 +68,7 @@ public class LogInTest extends Application{
 		closeButton.setOnAction(event -> closeProgram());*/
 		
 		GridPane grid = new GridPane();
+		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(0);
 		grid.setHgap(0);
@@ -96,7 +97,16 @@ public class LogInTest extends Application{
 		Button newUserButton = new Button("Register");
 		GridPane.setConstraints(newUserButton, 3, 3);
 		
-		
+		//register new user button goes should bring up the NewUserSignUp window
+		newUserButton.setOnAction(event -> {
+			NewUserSignUp signUp = new NewUserSignUp();
+			try {
+				signUp.start(window);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		
 		
 		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton, newUserButton);
