@@ -43,6 +43,8 @@ public class LogInTest extends Application{
 		
 		window = primaryStage;
 		
+		//KELLY: DONT DELETE THE COMMENT OUT CODE PLEASE :)
+		
 		//button1 for registering new account
 		/*Label label1 = new Label("This is the Main Menu");
 		Button button1 = new Button("Login");
@@ -104,7 +106,7 @@ public class LogInTest extends Application{
 		window.show();
 		
 		window.setOnCloseRequest(event -> {
-			event.consume(); //need to consume to make sure it doesn't close the program when the user clicks 'No'
+			event.consume(); //need to consume to make sure it doesn't close the program when the user clicks 'No' 
 			closeProgram();
 		});
 		
