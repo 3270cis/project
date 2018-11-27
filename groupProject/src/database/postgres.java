@@ -13,9 +13,10 @@ public class postgres {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
-					
-			//"jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass"
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+				
+			//jennifer "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+			//kelly "jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass"
 			//hafsah connectivity: "jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin"
 			System.out.println("Database connected");
 			
