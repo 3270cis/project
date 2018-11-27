@@ -13,7 +13,7 @@ public class postgres {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "passpass");
 				
 			//jennifer "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 			//kelly "jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass"
@@ -37,6 +37,7 @@ public class postgres {
 			//KELLY, what does code line 23 to 28 do?
 			    //successful connection, but
 			    //gives error "The column index is out of range: 1, number of columns: 0."
+			    //comment
 
 			
 		} catch(Exception ex) {
