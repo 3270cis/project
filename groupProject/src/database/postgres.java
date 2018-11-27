@@ -4,8 +4,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.postgresql.util.LruCache.CreateAction;
+
 public class postgres {
 	public static void main(String[] args) {
+		
+		
 		try {
 			Class.forName("org.postgresql.Driver");
 			
@@ -15,15 +19,15 @@ public class postgres {
 			//hafsah connectivity: "jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin"
 			System.out.println("Database connected");
 			
-			PreparedStatement statement = connection.prepareStatement("select* from flight");
+			PreparedStatement pstatement = connection.prepareStatement("select* from User");
 			
-			statement.executeQuery();
+			pstatement.executeQuery();
 			
 			
-			ResultSet resultSet = statement.executeQuery();
+			ResultSet resultSet = pstatement.executeQuery();
 			
 			while (resultSet.next())
-			      System.out.println(resultSet.getInt(1) + "\t" +
+			      System.out.println(resultSet.getString(1) + "\t" +
 			        resultSet.getString(2));
 		
 			    // Close the connection
@@ -40,3 +44,57 @@ public class postgres {
 	}
 
 }
+
+
+
+//ignore
+/*
+
+CREATE TABLE airplane(airplaneID int PRIMARY KEY,capacity smallint);
+
+
+
+CREATE TABLE flight (
+flightNo int PRIMARY KEY,
+airplaneID int references airplane(airplaneID)
+);
+
+
+
+
+
+CREATE TABLE flightDetails (
+flightDetailsID int PRIMARY KEY,
+flightNo int references flight(flightNo),
+departureDateTime timestamp,
+arrivalDateTime timestamp,
+destination varchar(50),
+arrivalCity varchar(50),
+departureCity varchar(50)
+);
+
+
+
+
+
+
+CREATE TABLE users (
+customerID int PRIMARY KEY,
+SSN int UNIQUE,
+c_username varchar(25) UNIQUE,
+c_password_hash varchar(25),
+f_name varchar(25),
+l_name varchar(25)
+);
+
+
+
+
+
+CREATE TABLE reservation (
+reservationNo int PRIMARY KEY,
+flightNo int references flight(flightNo),
+customerID int references users(customerID),
+cancelledAt timestamp
+);
+*/
