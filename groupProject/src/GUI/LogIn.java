@@ -118,14 +118,15 @@ public class LogIn extends Application{
 		
 		window.setOnCloseRequest(event -> {
 			event.consume(); //need to consume to make sure it doesn't close the program when the user clicks 'No' 
-			closeProgram(); //close program method
+			closeProgram(); //close program method call
 		});
 		
 	}
 	
 	//this method calls the AlertBoxText.java class. It confirms the user if he/she wants to exit the program.
 	public void closeProgram() {
-		Boolean answer = AlertBox.display("Exit", "Close the program?");
+		AlertBox abox = new AlertBox();
+		Boolean answer = abox.display("Exit", "Close the program?");
 		if(answer) {
 			Platform.exit();
 		}

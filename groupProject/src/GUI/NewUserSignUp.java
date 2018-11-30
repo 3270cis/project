@@ -1,5 +1,6 @@
 package GUI;
 
+import backend.ValueObject;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -111,15 +112,32 @@ public class NewUserSignUp extends Application {
     GridPane.setConstraints(securityQuestionAnswerInput, 1, 10);
 	
 	//adding all the textfields and labels into the grid 
+  //creating a scene of a certain size, and adding the grid on it
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
 			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
 			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton );
 	
-	//creating a scene of a certain size, and adding the grid on it
+	
+	createAcctButton.setOnAction(event -> {
+		ValueObject valObj = new ValueObject();
+		
+	
+		if (valObj.usernameCheck(usernameInput.getText()) == true) {
+			
+			
+			AlertBox abox = new AlertBox();
+			abox.alertUsernameTaken(usernameInput.getText());
+			//what next?
+		}
+		
+	});
+	
 	Scene scene = new Scene(grid, 300, 500);
 	window.setScene(scene);
 	window.setTitle("HelloWorld Register");
 	window.show();
+	
+	
 	
 	
 	

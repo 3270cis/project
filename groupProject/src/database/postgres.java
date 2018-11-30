@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.postgresql.util.LruCache.CreateAction;
 
@@ -13,17 +14,16 @@ public class postgres {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "passpass");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
 				
 			//jennifer "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 			//kelly "jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass"
 			//hafsah connectivity: "jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin"
 			System.out.println("Database connected");
 			
-			PreparedStatement pstatement = connection.prepareStatement("select* from User");
+			PreparedStatement pstatement = connection.prepareStatement("select* from User"); //User?
 			
 			pstatement.executeQuery();
-			
 			
 			ResultSet resultSet = pstatement.executeQuery();
 			

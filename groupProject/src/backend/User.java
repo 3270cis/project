@@ -61,8 +61,8 @@ public abstract  class User {
 		return SSN;
 	}
 
-	public void setSSN(String sSN) {
-		SSN = sSN;
+	public void setSSN(String SSN) {
+		this.SSN = SSN;
 	}
 
 	public String getStreetAddress() {

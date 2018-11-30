@@ -10,12 +10,43 @@ import javafx.stage.Stage;
 
 public class AlertBox {
 	
+	AlertBox(){
+		
+	}
+	
+	public void alertUsernameTaken(String username) {
+		
+		Stage window = new Stage();
+		
+		window.initModality(Modality.APPLICATION_MODAL);
+		window.setTitle("Notice");
+		window.setMinWidth(300);
+		
+		Label label = new Label();
+		label.setText(username + " is taken");
+		
+		Button OKButton = new Button("Ok");
+		
+		OKButton.setOnAction(event -> {
+				answer = true;
+				window.close();
+		});
+
+		
+		VBox layout = new VBox(10);
+		layout.getChildren().addAll(label, OKButton);
+		layout.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		window.showAndWait();
+		
+	}
 	
 	//THIS CODE IS FOR CONFIRMING IF THE USER WANTS TO EXIT THE APPLICATION
-	
 	static boolean answer;
 	
-	public static boolean display(String title, String message) {
+	public boolean display(String title, String message) {
 		
 		Stage window = new Stage();
 		
