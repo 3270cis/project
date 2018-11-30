@@ -25,10 +25,25 @@ public class ValueObject {
 			if (dataObj.usernameCheckInDB(username) == true) {
 				return true;
 			}
-		
-			return false;
-		
+			
+			else {
+				return false;
+			}
 		}
+	
+	public void createNewUser(String firstNameString, String lastNameString, String SSNString, String streetAddressString, String cityString, String stateString,
+			int zipCodeStringToInt, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString ) {
+		
+;
+		
+		Customer newCustomer = new Customer(firstNameString,  lastNameString,  SSNString,  streetAddressString,  cityString,  stateString,
+				 zipCodeStringToInt,  phoneNumberString,  usernameString,  passwordString,  emailString, securityQuestionString, securityQuestionAnswerString);
+		
+		DatabaseObject dataObj = new DatabaseObject();
+		
+		dataObj.createNewCustomerInDB(newCustomer);
+		
+	}
 
 }
 

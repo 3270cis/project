@@ -1,5 +1,6 @@
 package GUI;
 
+import backend.User;
 import backend.ValueObject;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -117,17 +118,45 @@ public class NewUserSignUp extends Application {
 			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
 			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton );
 	
+	String firstNameString = firstNameInput.getText();
+	String lastNameString = lastNameInput.getText();
+	String SSNString = SSNInput.getText();
+	String streetAddressString = streetAddressInput.getText();
+	String cityString = cityInput.getText();
+	String stateString = stateInput.getText();
+	String zipCodeString = zipCodeInput.getText();
+	String phoneNumberString = phoneNumberInput.getText();
+	
+	String usernameString = usernameInput.getText();
+	String passwordString = passwordInput.getText();
+	String emailString = emailInput.getText();
+	String securityQuestionString = securityQuestionInput.getText();
+	String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
+	
+	
+	
+	
 	
 	createAcctButton.setOnAction(event -> {
+		
 		ValueObject valObj = new ValueObject();
 		
 	
 		if (valObj.usernameCheck(usernameInput.getText()) == true) {
 			
-			
 			AlertBox abox = new AlertBox();
 			abox.alertUsernameTaken(usernameInput.getText());
 			//what next?
+		}
+		
+		//create the new user customer
+		else {
+			
+			int zipCodeStringToInt = Integer.parseInt(zipCodeString);
+			
+			valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
+					zipCodeStringToInt, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
+			
 		}
 		
 	});
@@ -140,9 +169,15 @@ public class NewUserSignUp extends Application {
 	
 	
 	
+	}
 	
 	
-	
+	//ignore, should i use this method or would it make it more confusing?
+	public String getsTheTextFieldAsAString(String s) {
+		
+		TextField test = new TextField(s);
+		
+		return test.getText();
 	}
 
 }
