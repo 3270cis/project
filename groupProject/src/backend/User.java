@@ -8,7 +8,7 @@ public abstract  class User {
 	private String streetAddress = "";
 	private String city = "";
 	private String state = "";
-	private int zipCode;
+	private String zipCode;
 	private String phoneNumber="";
 	
 	private String userName ="";
@@ -23,7 +23,7 @@ public abstract  class User {
 	}
 
 	public User(String firstName, String lastName, String SSN, String streetAddress, String city, String state,
-			int zipCode, String phoneNumber, String userName, String password, String email, String securityQuestion, String securityQuestionAnswer ) {
+			String zipCode, String phoneNumber, String userName, String password, String email, String securityQuestion, String securityQuestionAnswer ) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -89,11 +89,11 @@ public abstract  class User {
 		this.state = state;
 	}
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 

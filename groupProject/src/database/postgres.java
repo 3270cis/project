@@ -21,11 +21,13 @@ public class postgres {
 			//hafsah connectivity: "jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin"
 			System.out.println("Database connected");
 			
-			PreparedStatement pstatement = connection.prepareStatement("select* from User"); //User?
+			PreparedStatement pstatement = connection.prepareStatement("select * from CustomerAirline"); 
 			
 			pstatement.executeQuery();
 			
 			ResultSet resultSet = pstatement.executeQuery();
+			
+			
 			
 			while (resultSet.next())
 			      System.out.println(resultSet.getString(1) + "\t" +

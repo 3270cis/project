@@ -118,20 +118,6 @@ public class NewUserSignUp extends Application {
 			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
 			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton );
 	
-	String firstNameString = firstNameInput.getText();
-	String lastNameString = lastNameInput.getText();
-	String SSNString = SSNInput.getText();
-	String streetAddressString = streetAddressInput.getText();
-	String cityString = cityInput.getText();
-	String stateString = stateInput.getText();
-	String zipCodeString = zipCodeInput.getText();
-	String phoneNumberString = phoneNumberInput.getText();
-	
-	String usernameString = usernameInput.getText();
-	String passwordString = passwordInput.getText();
-	String emailString = emailInput.getText();
-	String securityQuestionString = securityQuestionInput.getText();
-	String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
 	
 	
 	
@@ -152,10 +138,25 @@ public class NewUserSignUp extends Application {
 		//create the new user customer
 		else {
 			
-			int zipCodeStringToInt = Integer.parseInt(zipCodeString);
+			String firstNameString = firstNameInput.getText();
+			String lastNameString = lastNameInput.getText();
+			String SSNString = SSNInput.getText();
+			String streetAddressString = streetAddressInput.getText();
+			String cityString = cityInput.getText();
+			String stateString = stateInput.getText();
+			String zipCodeString = zipCodeInput.getText();
+			String phoneNumberString = phoneNumberInput.getText();
+			
+			String usernameString = usernameInput.getText();
+			String passwordString = passwordInput.getText();
+			String emailString = emailInput.getText();
+			String securityQuestionString = securityQuestionInput.getText();
+			String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
+			
+			//int zipCodeStringToInt = Integer.parseInt(zipCodeString);
 			
 			valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
-					zipCodeStringToInt, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
+					zipCodeString, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
 			
 		}
 		

@@ -23,7 +23,7 @@ public class AlertBox {
 		window.setMinWidth(300);
 		
 		Label label = new Label();
-		label.setText(username + " is taken");
+		label.setText(username + " username is already taken");
 		
 		Button OKButton = new Button("Ok");
 		

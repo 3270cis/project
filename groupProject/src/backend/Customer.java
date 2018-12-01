@@ -14,7 +14,7 @@ public class Customer extends User {
 	private String streetAddress = "";
 	private String city = "";
 	private String state = "";
-	private int zipCode;
+	private String zipCode;
 	private String phoneNumber="";
 	
 	private String userName ="";
@@ -35,7 +35,7 @@ public class Customer extends User {
 	
 	
 	public Customer(String firstNameString, String lastNameString, String sSNString, String streetAddressString,
-			String cityString, String stateString, int zipCodeStringToInt, String phoneNumberString,
+			String cityString, String stateString, String zipCodeString, String phoneNumberString,
 			String usernameString, String passwordString, String emailString, String securityQuestionString,
 			String securityQuestionAnswerString) {
 		
@@ -45,7 +45,7 @@ public class Customer extends User {
 		this.streetAddress = streetAddressString;
 		this.city = cityString;
 		this.state = stateString;
-		this.zipCode = zipCodeStringToInt;
+		this.zipCode = zipCodeString;
 		this.phoneNumber = phoneNumberString;
 		this.userName = usernameString;
 		this.password = passwordString;
@@ -120,11 +120,11 @@ public class Customer extends User {
 		this.state = state;
 	}
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 

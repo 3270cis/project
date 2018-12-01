@@ -32,16 +32,22 @@ public class ValueObject {
 		}
 	
 	public void createNewUser(String firstNameString, String lastNameString, String SSNString, String streetAddressString, String cityString, String stateString,
-			int zipCodeStringToInt, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString ) {
+			String zipCodeString, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString ) {
 		
 ;
 		
 		Customer newCustomer = new Customer(firstNameString,  lastNameString,  SSNString,  streetAddressString,  cityString,  stateString,
-				 zipCodeStringToInt,  phoneNumberString,  usernameString,  passwordString,  emailString, securityQuestionString, securityQuestionAnswerString);
+				 zipCodeString,  phoneNumberString,  usernameString,  passwordString,  emailString, securityQuestionString, securityQuestionAnswerString);
+		
 		
 		DatabaseObject dataObj = new DatabaseObject();
 		
 		dataObj.createNewCustomerInDB(newCustomer);
+		
+		/*dataObj.createNewCustomerInDB(newCustomer.getFirstName(),newCustomer.getLastName(),newCustomer.getSSN(),
+				newCustomer.getStreetAddress(), newCustomer.getCity(),newCustomer.getState(),
+				newCustomer.getZipCode(), newCustomer.getPhoneNumber(), newCustomer.getUserName(), 
+				newCustomer.getPassword(), newCustomer.getEmail(), newCustomer.getSecurityQuestion(), newCustomer.getSecurityQuestionAnswer());*/
 		
 	}
 
