@@ -40,6 +40,9 @@ public class NewUserSignUp extends Application {
 	Button createAcctButton = new Button("Create Account");
 	GridPane.setConstraints(createAcctButton, 1, 17);
 	
+	Button backToLoginButton = new Button("Back to Login");
+	GridPane.setConstraints(backToLoginButton, 0, 18);
+	
 	
 	//creates all the labels
 	Label firstName = new Label("first name : ");
@@ -116,7 +119,7 @@ public class NewUserSignUp extends Application {
   //creating a scene of a certain size, and adding the grid on it
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
 			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
-			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton );
+			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton, backToLoginButton );
 	
 	
 	
@@ -166,8 +169,6 @@ public class NewUserSignUp extends Application {
 	window.setScene(scene);
 	window.setTitle("HelloWorld Register");
 	window.show();
-	
-	
 	
 	
 	}
