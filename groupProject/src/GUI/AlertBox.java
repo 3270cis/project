@@ -14,6 +14,36 @@ public class AlertBox {
 		
 	}
 	
+	public void usernameAndPasswordInvalid(String message) {
+		
+		Stage window = new Stage();
+		
+		window.initModality(Modality.APPLICATION_MODAL);
+		window.setTitle("Notice");
+		window.setMinWidth(300);
+		
+		Label label = new Label();
+		label.setText(message);
+		
+		Button OKButton = new Button("Ok");
+		
+		OKButton.setOnAction(event -> {
+				answer = true;
+				window.close();
+		});
+
+		
+		VBox layout = new VBox(10);
+		layout.getChildren().addAll(label, OKButton);
+		layout.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		window.showAndWait();
+		
+	}
+	
+	
 	public void alertUsernameTaken(String username) {
 		
 		Stage window = new Stage();

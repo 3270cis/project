@@ -126,6 +126,7 @@ public class Login extends Application{
 			else {
 				
 				AlertBox aBox = new AlertBox();
+				aBox.usernameAndPasswordInvalid("Invalid username or password!");
 				
 			}
 			
