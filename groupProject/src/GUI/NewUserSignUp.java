@@ -127,7 +127,7 @@ public class NewUserSignUp extends Application {
 		ValueObject valObj = new ValueObject();
 		
 	
-		if (valObj.usernameCheck(usernameInput.getText()) == true) {
+		if (valObj.doesUsernameExist((usernameInput.getText()))) {
 			
 			AlertBox abox = new AlertBox();
 			abox.alertUsernameTaken(usernameInput.getText());

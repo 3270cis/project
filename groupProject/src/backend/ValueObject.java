@@ -12,7 +12,7 @@ public class ValueObject {
 		
 	}
 	
-	public boolean usernameCheck(String username) {
+	public boolean doesUsernameExist(String username) {
 		
 		/*ArrayList<String> array = new ArrayList<>();*/
 		/*array.add(username);
@@ -30,7 +30,6 @@ public class ValueObject {
 				return false;
 			}
 	}
-	
 	
 	
 	public void createNewUser(String firstNameString, String lastNameString, String SSNString, String streetAddressString, String cityString, String stateString,
@@ -56,8 +55,10 @@ public class ValueObject {
 	public boolean checkLoginCredentials(String username, String password) {
 		
 		DatabaseObject dataObj = new DatabaseObject();
+	
+		//the user inputs can not be left empty, use a method to check the strings
 		
-		if(dataObj.isCorrectUserPWInDB(username, password) == true) {
+		if(dataObj.isCorrectLoginCredentials(username, password) == true) {
 			
 			return true;
 		}

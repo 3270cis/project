@@ -79,24 +79,27 @@ public class Login extends Application{
 		helloWorldLabel.setAlignment(Pos.TOP_CENTER);
 		
 		Label usernameLabel = new Label("Username: ");
-		GridPane.setConstraints(usernameLabel, 0, 2);
+		GridPane.setConstraints(usernameLabel, 0, 1);
 		
 		TextField usernameInput = new TextField();
 		usernameInput.setPromptText("UserID");
-		GridPane.setConstraints(usernameInput, 0, 1);
+		GridPane.setConstraints(usernameInput, 0, 2);
 		
 		Label passwordLabel = new Label("Password: ");
-		GridPane.setConstraints(passwordLabel, 1, 2);
+		GridPane.setConstraints(passwordLabel, 0, 3);
 		
 		PasswordField passwordInput = new PasswordField();
 		passwordInput.setPromptText("password");
-		GridPane.setConstraints(passwordInput, 2, 2);
+		GridPane.setConstraints(passwordInput, 0, 4);
 		
 		Button loginButton = new Button("Login");
-		GridPane.setConstraints(loginButton, 2, 3);
+		GridPane.setConstraints(loginButton, 0, 5);
 		
 		Button newUserButton = new Button("Register");
-		GridPane.setConstraints(newUserButton, 3, 3);
+		GridPane.setConstraints(newUserButton, 0, 6);
+		
+		Button forgotPasswordButton = new Button("Forgot Password");
+		GridPane.setConstraints(forgotPasswordButton, 4, 4);
 		
 		//"register" button should bring up the NewUserSignUp window
 		newUserButton.setOnAction(event -> {
@@ -104,7 +107,6 @@ public class Login extends Application{
 			try {
 				signUp.start(window);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -126,14 +128,25 @@ public class Login extends Application{
 			else {
 				
 				AlertBox aBox = new AlertBox();
-				aBox.usernameAndPasswordInvalid("Invalid username or password!");
-				
+				aBox.displayMessage("Invalid username or password!");
+			}
+			
+		});
+		
+		forgotPasswordButton.setOnAction(event -> {
+			ForgotPasswordMenu fpmenu = new ForgotPasswordMenu();
+
+			try {
+				fpmenu.start(window);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
 		});
 		
 		
-		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, loginButton, newUserButton);
+		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, 
+									loginButton, newUserButton, forgotPasswordButton);
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);
@@ -150,7 +163,7 @@ public class Login extends Application{
 	//this method calls the AlertBoxText.java class. It confirms the user if he/she wants to exit the program.
 	public void closeProgram() {
 		AlertBox abox = new AlertBox();
-		Boolean answer = abox.display("Exit", "Close the program?");
+		Boolean answer = abox.displayWhenExit("Exit", "Close the program?");
 		if(answer) {
 			Platform.exit();
 		}

@@ -14,7 +14,8 @@ public class AlertBox {
 		
 	}
 	
-	public void usernameAndPasswordInvalid(String message) {
+	
+	public void displayMessage(String message) {
 		
 		Stage window = new Stage();
 		
@@ -76,7 +77,7 @@ public class AlertBox {
 	//THIS CODE IS FOR CONFIRMING IF THE USER WANTS TO EXIT THE APPLICATION
 	static boolean answer;
 	
-	public boolean display(String title, String message) {
+	public boolean displayWhenExit(String title, String message) {
 		
 		Stage window = new Stage();
 		
