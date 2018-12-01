@@ -1,6 +1,7 @@
 package GUI;
 import com.sun.javafx.scene.SceneEventDispatcher;
 
+import backend.ValueObject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class LogIn extends Application{
+public class Login extends Application{
 	
 	Stage window;
 	/*Scene loginPage;
@@ -106,6 +107,29 @@ public class LogIn extends Application{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		});
+		
+		//login button should go through the username & pw checks and if it returns true, then open up the flight main menu
+		loginButton.setOnAction(event -> {
+			ValueObject valObj = new ValueObject();
+			
+			if (valObj.checkLoginCredentials(usernameInput.getText(), passwordInput.getText())) {
+				
+				FlightsMainMenu main = new FlightsMainMenu();
+				try {
+					main.start(window);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			else {
+				
+				AlertBox aBox = new AlertBox();
+				
+			}
+			
+			
 		});
 		
 		

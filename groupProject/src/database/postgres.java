@@ -27,8 +27,6 @@ public class postgres {
 			
 			ResultSet resultSet = pstatement.executeQuery();
 			
-			
-			
 			while (resultSet.next())
 			      System.out.println(resultSet.getString(1) + "\t" +
 			        resultSet.getString(2));

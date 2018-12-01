@@ -122,10 +122,6 @@ public class NewUserSignUp extends Application {
 			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton, backToLoginButton );
 	
 	
-	
-	
-	
-	
 	createAcctButton.setOnAction(event -> {
 		
 		ValueObject valObj = new ValueObject();
@@ -162,6 +158,20 @@ public class NewUserSignUp extends Application {
 					zipCodeString, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
 			
 		}
+		
+	});
+	
+	
+	backToLoginButton.setOnAction(event -> {
+		Login log = new Login();
+		try {
+			log.start(window);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	});
 	

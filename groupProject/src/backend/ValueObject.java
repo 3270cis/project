@@ -29,12 +29,14 @@ public class ValueObject {
 			else {
 				return false;
 			}
-		}
+	}
+	
+	
 	
 	public void createNewUser(String firstNameString, String lastNameString, String SSNString, String streetAddressString, String cityString, String stateString,
 			String zipCodeString, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString ) {
 		
-;
+
 		
 		Customer newCustomer = new Customer(firstNameString,  lastNameString,  SSNString,  streetAddressString,  cityString,  stateString,
 				 zipCodeString,  phoneNumberString,  usernameString,  passwordString,  emailString, securityQuestionString, securityQuestionAnswerString);
@@ -50,6 +52,23 @@ public class ValueObject {
 				newCustomer.getPassword(), newCustomer.getEmail(), newCustomer.getSecurityQuestion(), newCustomer.getSecurityQuestionAnswer());*/
 		
 	}
+
+	public boolean checkLoginCredentials(String username, String password) {
+		
+		DatabaseObject dataObj = new DatabaseObject();
+		
+		if(dataObj.isCorrectUserPWInDB(username, password) == true) {
+			
+			return true;
+		}
+		
+		else {
+			return false;
+		}
+		
+	}
+
+
 
 }
 
