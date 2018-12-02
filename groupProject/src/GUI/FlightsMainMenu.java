@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -33,13 +35,21 @@ public class FlightsMainMenu extends Application {
 		Button bookFlightButton = new Button("Book Flight");
 		Button MainMenuButton = new Button("Main Menu");
 		
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.TOP_CENTER);
-		grid.setPadding(new Insets(10, 10, 10, 10));
-		grid.add(MainMenuButton, 0, 0);
-		grid.add(searchFlightsButton, 2, 3);
+		Label searchLabel = new Label("Search for Flights");
+		Label fromLabel = new Label("From");
+		Label toLabel = new Label("To");
+		Label departLabel = new Label("Depart Date");
+		Label returnLabel = new Label("Return Date");
 		
-		Scene scene = new Scene(grid, 700, 300);
+		BorderPane bp = new BorderPane();
+		bp.setPadding(new Insets(10, 10, 10, 10));
+		bp.set(MainMenuButton, 0, 0);
+		bp.add(searchFlightsButton, 0, 1, 1, 1 );
+		bp.add(returnLabel, 5, 5, 2, 1);
+		
+		
+		
+		Scene scene = new Scene(bp, 700, 300);
 		window.setScene(scene);
 		window.setTitle("HelloWorld Airlines Flight Selection");
 		window.show();
