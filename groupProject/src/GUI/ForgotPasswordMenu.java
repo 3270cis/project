@@ -56,7 +56,12 @@ public class ForgotPasswordMenu extends Application {
 				DatabaseObject dataObj = new DatabaseObject();
 				secQuestion = dataObj.getSecurityQuestionDB(usernameInput.getText());
 				
-				
+				SecurityQuestionMenu sqMenu = new SecurityQuestionMenu(secQuestion, usernameInput.getText());
+				try {
+					sqMenu.start(window);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			
 			else {
@@ -66,6 +71,8 @@ public class ForgotPasswordMenu extends Application {
 				
 			}
 		});
+		
+		grid.getChildren().addAll(label, usernameLabel, usernameInput, submitButton);
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

@@ -68,6 +68,23 @@ public class ValueObject {
 		}
 		
 	}
+	
+	public boolean checkAnswer(String answer) {
+		
+		DatabaseObject dataObj = new DatabaseObject();
+		
+		if (dataObj.doesAnswerMatchInDB(answer)) {
+			
+			return true;
+			
+		}
+		
+		else {
+			
+			return false;
+		}
+		
+	}
 
 
 
