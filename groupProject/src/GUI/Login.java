@@ -98,6 +98,7 @@ public class Login extends Application{
 		
 		Button forgotPasswordButton = new Button("Forgot Password");
 		GridPane.setConstraints(forgotPasswordButton, 4, 4);
+		//comment
 		
 		//"register" button should bring up the NewUserSignUp window
 		newUserButton.setOnAction(event -> {
