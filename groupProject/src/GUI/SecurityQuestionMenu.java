@@ -82,6 +82,9 @@ public class SecurityQuestionMenu extends Application {
 		Button submitButton = new Button("Submit");
 		grid.add(submitButton, 5, 5);
 		
+		Button backToLoginButton = new Button("Back to Login");
+		grid.add(backToLoginButton, 0, 5);
+		
 		submitButton.setOnAction(event -> {
 			ValueObject valObj = new ValueObject();
 			
@@ -95,7 +98,14 @@ public class SecurityQuestionMenu extends Application {
 			}
 		});
 		
-		/*grid.getChildren().addAll(secQuestionLabel, secQuestionInput, submitButton);*/
+		backToLoginButton.setOnAction(event -> {
+			Login login = new Login();
+			try {
+				login.start(window);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

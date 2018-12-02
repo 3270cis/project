@@ -47,7 +47,10 @@ public class ForgotPasswordMenu extends Application {
 		grid.add(usernameInput, 0, 2);
 		
 		Button submitButton = new Button("Submit");
-		grid.add(submitButton, 3, 3);
+		grid.add(submitButton, 3, 2);
+		
+		Button backToLoginButton = new Button("Back to Login");
+		grid.add(backToLoginButton, 0, 3);
 		
 		submitButton.setOnAction(event -> {
 			ValueObject valObj = new ValueObject();
@@ -70,6 +73,16 @@ public class ForgotPasswordMenu extends Application {
 				AlertBox aBox = new AlertBox();
 				aBox.displayMessage("Invalid username");
 				
+			}
+		});
+		
+		
+		backToLoginButton.setOnAction(event -> {
+			Login login = new Login();
+			try {
+				login.start(window);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 		
