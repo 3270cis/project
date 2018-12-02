@@ -21,7 +21,7 @@ public class SecurityQuestionMenu extends Application {
 	public SecurityQuestionMenu(String secQuestion, String username) {
 		
 		this.secQuestion = secQuestion;
-		this.username = username;
+		SecurityQuestionMenu.username = username;
 
 	}
 
@@ -44,7 +44,7 @@ public class SecurityQuestionMenu extends Application {
 
 
 	public void setUsername(String username) {
-		this.username = username;
+		SecurityQuestionMenu.username = username;
 	}
 
 
@@ -77,6 +77,7 @@ public class SecurityQuestionMenu extends Application {
 		
 		TextField secQuestionInput = new TextField();
 		secQuestionInput.setPromptText("answer");
+		grid.add(secQuestionInput, 4, 5);
 		
 		Button submitButton = new Button("Submit");
 		grid.add(submitButton, 5, 5);
@@ -94,7 +95,7 @@ public class SecurityQuestionMenu extends Application {
 			}
 		});
 		
-		grid.getChildren().addAll(secQuestionLabel, secQuestionInput, submitButton);
+		/*grid.getChildren().addAll(secQuestionLabel, secQuestionInput, submitButton);*/
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

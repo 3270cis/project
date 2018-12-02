@@ -44,6 +44,7 @@ public class ForgotPasswordMenu extends Application {
 		
 		TextField usernameInput = new TextField();
 		usernameInput.setPromptText("username"); 
+		grid.add(usernameInput, 0, 2);
 		
 		Button submitButton = new Button("Submit");
 		grid.add(submitButton, 3, 3);
@@ -72,7 +73,7 @@ public class ForgotPasswordMenu extends Application {
 			}
 		});
 		
-		grid.getChildren().addAll(label, usernameLabel, usernameInput, submitButton);
+		/*grid.getChildren().addAll(label, usernameLabel, usernameInput, submitButton);*/
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

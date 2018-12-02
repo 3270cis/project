@@ -71,8 +71,6 @@ public class Login extends Application{
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
-		grid.setVgap(0);
-		grid.setHgap(0);
 		
 		Label helloWorldLabel = new Label("HelloWorld Airlines");
 		helloWorldLabel.setStyle("-fx-font-size: 28pt");
