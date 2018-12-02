@@ -8,13 +8,18 @@ import java.sql.SQLException;
 import org.postgresql.util.LruCache.CreateAction;
 
 public class postgres {
+	//String databaseURL= "jdbc:postgresql://ec2-54-225-110-156.compute-1.amazonaws.com/d3r14stg9r3fd4";
+	//String databaseUser = "sahrzfqchvludh";
+	//String databasePass="906f8f4de585bb493c7078eb472c4cfc91fe2fbbe6f8af6f78f255631429398c";
 	public static void main(String[] args) {
-		
+		String databaseURL= "jdbc:postgresql://ec2-54-225-110-156.compute-1.amazonaws.com/d3r14stg9r3fd4";
+		String databaseUser = "sahrzfqchvludh";
+		String databasePass="906f8f4de585bb493c7078eb472c4cfc91fe2fbbe6f8af6f78f255631429398c";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://ec2-54-225-110-156.compute-1.amazonaws.com/d3r14stg9r3fd4", "sahrzfqchvludh", "906f8f4de585bb493c7078eb472c4cfc91fe2fbbe6f8af6f78f255631429398c");
+			Connection connection = DriverManager.getConnection(databaseURL,databaseUser, databasePass);
 				
 			//jennifer "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 			//kelly "jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass"
