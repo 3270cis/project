@@ -44,30 +44,6 @@ public class Login extends Application{
 		
 		window = primaryStage;
 		
-		//KELLY: DONT DELETE THE COMMENT OUT CODE PLEASE :)
-		
-		//button1 for registering new account
-		/*Label label1 = new Label("This is the Main Menu");
-		Button button1 = new Button("Login");
-		button1.setOnAction(event -> window.setScene(registerPage));
-		
-		//the layout with the layout and button
-		StackPane layout1 = new StackPane();
-		layout1.getChildren().addAll(label1, button1);
-		loginPage = new Scene(layout1, 300, 300);*/
-		
-		//button 2 to go back to the login page
-		/*Label label2 = new Label("The is the register new account page");
-		Button button2 = new Button("Click here to go back to the login page");
-		button2.setOnAction(event -> window.setScene(loginPage));*/
-		
-		/*StackPane layout2 = new StackPane();
-		layout2.getChildren().addAll(label2, button2);
-		registerPage = new Scene(layout2, 500, 500)*/;
-		
-		/*Button closeButton = new Button("close");
-		closeButton.setOnAction(event -> closeProgram());*/
-		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
@@ -98,7 +74,6 @@ public class Login extends Application{
 		
 		Button forgotPasswordButton = new Button("Forgot Password");
 		GridPane.setConstraints(forgotPasswordButton, 4, 4);
-		//commentt4twt
 		
 		//"register" button should bring up the NewUserSignUp window
 		newUserButton.setOnAction(event -> {

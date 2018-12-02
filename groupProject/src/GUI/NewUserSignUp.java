@@ -25,6 +25,7 @@ public class NewUserSignUp extends Application {
 	Label city;
 	Label state;
 	Label zipCode;
+	Label country;
 	Label phoneNumber;
 	
 	Label username;
@@ -41,6 +42,7 @@ public class NewUserSignUp extends Application {
 	TextField cityInput;
 	TextField stateInput;
 	TextField zipCodeInput;
+	TextField countryInput;
 	TextField phoneNumberInput;
 	
 	TextField usernameInput;
@@ -83,6 +85,7 @@ public class NewUserSignUp extends Application {
 	city = new Label("city : ");
 	state = new Label("state : ");
 	zipCode = new Label("zip-code : ");
+	country = new Label("country");
 	phoneNumber = new Label("Phone Number: ");
 	
 	username = new Label("username: ");
@@ -106,6 +109,7 @@ public class NewUserSignUp extends Application {
 	stateInput.setPromptText("GA");
 	zipCodeInput = new TextField();
 	zipCodeInput.setPromptText("30303");
+	countryInput = new TextField();
 	phoneNumberInput = new TextField();
 	phoneNumberInput.setPromptText("000-000-0000");
 	
@@ -132,6 +136,8 @@ public class NewUserSignUp extends Application {
 	GridPane.setConstraints(stateInput, 0, 12);
 	GridPane.setConstraints(zipCode, 0, 13);;
 	GridPane.setConstraints(zipCodeInput, 0, 14);
+	GridPane.setConstraints(country, 0, 17);
+	GridPane.setConstraints(countryInput, 0, 18);
     GridPane.setConstraints(phoneNumber, 0, 15);
     GridPane.setConstraints(phoneNumberInput, 0, 16);
     
@@ -149,7 +155,7 @@ public class NewUserSignUp extends Application {
 	//adding all the textfields and labels into the grid 
   //creating a scene of a certain size, and adding the grid on it
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
-			,state, stateInput, zipCode, zipCodeInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
+			,state, stateInput, zipCode, zipCodeInput, country, countryInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
 			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton, backToLoginButton );
 	
 	

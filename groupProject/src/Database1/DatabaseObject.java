@@ -16,6 +16,9 @@ import Backend.Customer;
 public class DatabaseObject {
 	
 	static Connection connection;
+	String databaseURL= "jdbc:postgresql://ec2-54-225-110-156.compute-1.amazonaws.com/d3r14stg9r3fd4";
+	String databaseUser = "sahrzfqchvludh";
+	String databasePass="906f8f4de585bb493c7078eb472c4cfc91fe2fbbe6f8af6f78f255631429398c";
 	
 	public DatabaseObject(){
 		
@@ -29,10 +32,10 @@ public class DatabaseObject {
 		try {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
-			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 1");
 			
-			String quertyString = "select * from customerairline ";
+			String quertyString = "select * from users ";
 			String usernameColumnInDB = "username";
 			
 			//create statement
@@ -75,10 +78,10 @@ public class DatabaseObject {
 		try {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
-			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 2");
 			
-			String quertyString = "INSERT INTO customerairline (firstname, lastname, ssn, streetaddress, city, state, zipcode, phonenumber, "
+			String quertyString = "INSERT INTO users (firstname, lastname, ssn, streetaddress, city, state, zipcode, phonenumber, "
 									+ "username, upassword, email, securityquestion, securityquestionanswer)"
 									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  "; 	
 			//create statement
@@ -116,7 +119,7 @@ public class DatabaseObject {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			//connection to databaseeeeeeee
+			//connection to database
 			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
 			System.out.println("Database Connected :) 3");
 			
@@ -247,6 +250,8 @@ public class DatabaseObject {
 		return upassword;
 		
 	}
+	
+	
 }
 	
 

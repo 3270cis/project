@@ -1,5 +1,8 @@
 package GUI;
 
+import java.util.ArrayList;
+
+import Backend.Flight;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -30,9 +33,17 @@ public class FlightsMainMenu extends Application {
 	ComboBox<String> cBoxFrom;
 	ComboBox<String> cBoxTo;
 	HBox hbox1;
+	ArrayList<Flight> flights;
 	
 	public static void main(String[] args) {
 		launch(args);
+		
+		/*Flight flight1 = new Flight(1001);
+		flight1.getFlightDetails().setDepartureCity("Atlanta");
+		flight1.getFlightDetails().setDestination("Paris");
+		*/
+		
+		
 	}
 	
 	@Override
@@ -63,11 +74,14 @@ public class FlightsMainMenu extends Application {
 		returnLabel = new Label("Return Date");
 		numOfPassLabel = new Label("Number of passengers");
 		
-		cBoxFrom = new ComboBox<>();
+		
+		
+		/*cBoxFrom = new ComboBox<>();
 		cBoxFrom.getItems().addAll("Atlanta (ATL)", "Paris (CDG)", "Tokyo (HND)", "Bogota (BOG)", "Dubai (DXB)", "Sydney (SYD)");
 		
 		cBoxTo = new ComboBox<>();
-		cBoxTo.getItems().addAll("Atlanta (ATL)", "Paris (CDG)", "Tokyo (HND)", "Bogota (BOG)", "Dubai (DXB)", "Sydney (SYD)");
+		cBoxTo.getItems().addAll("Atlanta (ATL)", "Paris (CDG)", "Tokyo (HND)", "Bogota (BOG)", "Dubai (DXB)", "Sydney (SYD)");*/
+		
 		
 		
 		
@@ -75,7 +89,7 @@ public class FlightsMainMenu extends Application {
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.add(fromLabel, 0, 1);
 		grid.add(cBoxFrom, 1, 1);
-		
+		grid.add(cBoxTo, 1, 2);
 		grid.add(toLabel, 0, 2);
 		
 		
@@ -88,8 +102,7 @@ public class FlightsMainMenu extends Application {
 		window.setScene(scene);
 		window.setTitle("HelloWorld Airlines Flight Selection");
 		window.show();
-		
-		
-	
 	}
+	
+	
 }

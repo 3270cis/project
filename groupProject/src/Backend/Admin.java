@@ -1,25 +1,34 @@
 package Backend;
 
-public class Admin extends Customer{
+public class Admin extends User{
 	
-	//An admin should be able to do all customer activities in addition to be able to add, update or delete a flight.
+	private String firstName;
+	private String lastName;
+	private String SSN;
+	private String phoneNumber;
+	private String email;
+	private int userID;
+	
 
-	public static void main(String[] args) {
-		
+	public Admin(String firstName, String lastName) {
+		super(firstName, lastName);
+	}
+	
+	
+	public void updateFlight() {
 		
 	}
 	
-	public static void addFlight() {
-		
-	}
-
-	
-	public static void updateFlight() {
+	@Override
+	public void deleteFlight() {
 		
 	}
 	
-	public static void deleteFlight() {
+	@Override
+	public void addFlight() {
 		
 	}
+	
+	
 
 }

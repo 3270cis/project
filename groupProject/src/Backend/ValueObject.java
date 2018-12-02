@@ -15,12 +15,6 @@ public class ValueObject {
 	
 	public boolean doesUsernameExist(String username) {
 		
-		/*ArrayList<String> array = new ArrayList<>();*/
-		/*array.add(username);
-		boolean contains = username.*/
-		
-		//maybe only require the username to have certain characteres? for example, no '<,>.?/:;"'{[}]|\ '
-		
 		DatabaseObject dataObj = new DatabaseObject();
 		
 			if (dataObj.usernameCheckInDB(username) == true) {
@@ -37,10 +31,17 @@ public class ValueObject {
 			String zipCodeString, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString ) {
 		
 
+		//polymorphism!
+		User newCustomer = new Customer(firstNameString, lastNameString);
+		User newAdmin = new Admin("bob", "bobby");
 		
-		Customer newCustomer = new Customer(firstNameString,  lastNameString,  SSNString,  streetAddressString,  cityString,  stateString,
-				 zipCodeString,  phoneNumberString,  usernameString,  passwordString,  emailString, securityQuestionString, securityQuestionAnswerString);
+		//explicit casting
+		Admin admin2 = (Admin) newAdmin;
+		admin2.updateFlight();
 		
+		//polymorphism
+		//newCustomer
+		Address newAddress = new Address();
 		
 		DatabaseObject dataObj = new DatabaseObject();
 		
@@ -117,6 +118,8 @@ public class ValueObject {
 			return false;
 		}
 	}
+	
+	
 		
 		
 	
