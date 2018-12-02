@@ -1,5 +1,6 @@
 package Backend;
 
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,8 +86,40 @@ public class ValueObject {
 		}
 		
 	}
-
-
+	
+	public boolean isNumber(String num) {
+		
+		try {
+			Integer.parseInt(num);
+			return true;
+			
+		}catch(NumberFormatException ex) {
+			ex.printStackTrace();
+			return false;
+		}	
+	}
+	
+	public boolean isValidZipCode(String zipCodeInput) {
+		
+		if(zipCodeInput.length() == 5) {
+			
+			try {
+				Integer.parseInt(zipCodeInput);
+				return true;
+			
+			}catch(NumberFormatException ex) {
+				ex.printStackTrace();
+				return false;
+			}	
+		}
+		
+		else {
+			return false;
+		}
+	}
+		
+		
+	
 
 }
 
