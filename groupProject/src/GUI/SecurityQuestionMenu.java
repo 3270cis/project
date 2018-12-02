@@ -88,12 +88,20 @@ public class SecurityQuestionMenu extends Application {
 		submitButton.setOnAction(event -> {
 			ValueObject valObj = new ValueObject();
 			
+			//checks if the user's answer matches in the database
 			if (valObj.checkAnswer(secQuestionInput.getText()) ) {
 				
 				DatabaseObject dataObj2 = new DatabaseObject();
 				
 				AlertBox aBox = new AlertBox();
 				aBox.displayMessage("your password is: " + dataObj2.getPasswordDB(SecurityQuestionMenu.getUsername()) );
+				
+			}
+			
+			else {
+				
+				AlertBox aBox = new AlertBox();
+				aBox.displayMessage("wrong answer");
 				
 			}
 		});
