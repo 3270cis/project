@@ -17,6 +17,38 @@ public class NewUserSignUp extends Application {
 	
 	Stage window;
 	
+	//creates all the labels
+	Label firstName;
+	Label lastName;
+	Label SSN;
+	Label streetAddress;
+	Label city;
+	Label state;
+	Label zipCode;
+	Label phoneNumber;
+	
+	Label username;
+	Label password;
+	Label email;
+	Label securityQuestion;
+	Label securityQuestionAnswer;
+	
+	//creates all the text box with examples inside the box fields
+	TextField firstNameInput;
+	TextField lastNameInput;
+	TextField SSNInput;
+	TextField streetAddressInput;
+	TextField cityInput;
+	TextField stateInput;
+	TextField zipCodeInput;
+	TextField phoneNumberInput;
+	
+	TextField usernameInput;
+	PasswordField passwordInput;
+	TextField emailInput;
+	TextField securityQuestionInput;
+	TextField securityQuestionAnswerInput;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -43,47 +75,46 @@ public class NewUserSignUp extends Application {
 	Button backToLoginButton = new Button("Back to Login");
 	GridPane.setConstraints(backToLoginButton, 0, 18);
 	
-	
 	//creates all the labels
-	Label firstName = new Label("first name : ");
-	Label lastName = new Label("last name : ");
-	Label SSN = new Label("SSN : ");
-	Label streetAddress = new Label("street address: ");
-	Label city = new Label("city : ");
-	Label state = new Label("state : ");
-	Label zipCode = new Label("zip-code : ");
-	Label phoneNumber = new Label("Phone Number: ");
+	firstName = new Label("first name : ");
+	lastName = new Label("last name : ");
+	SSN = new Label("SSN : ");
+	streetAddress = new Label("street address: ");
+	city = new Label("city : ");
+	state = new Label("state : ");
+	zipCode = new Label("zip-code : ");
+	phoneNumber = new Label("Phone Number: ");
 	
-	Label username = new Label("username: ");
-	Label password = new Label("password : ");
-	Label email = new Label("email : ");
-	Label securityQuestion = new Label("security question : ");
-	Label securityQuestionAnswer = new Label("security question answer: ");
+	username = new Label("username: ");
+	password = new Label("password : ");
+	email = new Label("email : ");
+	securityQuestion = new Label("security question : ");
+	securityQuestionAnswer = new Label("security question answer: ");
 	
 	//creates all the text box with examples inside the box fields
-	TextField firstNameInput = new TextField();
+	firstNameInput = new TextField();
 	firstNameInput.setPromptText("Jane");
-	TextField lastNameInput = new TextField();
+	lastNameInput = new TextField();
 	lastNameInput.setPromptText("Smith");
-	TextField SSNInput = new TextField();
+	SSNInput = new TextField();
 	SSNInput.setPromptText("123-45-6789");
-	TextField streetAddressInput = new TextField();
+	streetAddressInput = new TextField();
 	streetAddressInput.setPromptText("35 Broad Street");
-	TextField cityInput = new TextField();
+	cityInput = new TextField();
 	cityInput.setPromptText("Atlanta");
-	TextField stateInput = new TextField();
+	stateInput = new TextField();
 	stateInput.setPromptText("GA");
-	TextField zipCodeInput = new TextField();
+	zipCodeInput = new TextField();
 	zipCodeInput.setPromptText("30303");
-	TextField phoneNumberInput = new TextField();
+	phoneNumberInput = new TextField();
 	phoneNumberInput.setPromptText("000-000-0000");
 	
-	TextField usernameInput = new TextField();
-	PasswordField passwordInput = new PasswordField();
-	TextField emailInput = new TextField();
+	usernameInput = new TextField();
+	passwordInput = new PasswordField();
+	emailInput = new TextField();
 	emailInput.setPromptText("example@email.com");
-	TextField securityQuestionInput = new TextField();
-	TextField securityQuestionAnswerInput = new TextField();
+	securityQuestionInput = new TextField();
+	securityQuestionAnswerInput = new TextField();
 	
 	//saying where each textfield and labels should go
 	//how do you make it pretty?
@@ -125,38 +156,54 @@ public class NewUserSignUp extends Application {
 	createAcctButton.setOnAction(event -> {
 		
 		ValueObject valObj = new ValueObject();
+		AlertBox aBox1;
+		AlertBox aBox2;
+		AlertBox aBox3;
 		
-	
-		if (valObj.doesUsernameExist((usernameInput.getText()))) {
+		//checks zipcode...maybe i need a method that passes and checks all the inputs at the same time -__- , why didn't i do that earlier? fail
+		//or maybe just past in some of the items at a time, have methods for checking strings and not string inputs
+		//check fields inputs to make sure they're not left blank
+		if(valObj.isValidZipCode(zipCodeInput.getText())) {
+		
+			if (valObj.doesUsernameExist((usernameInput.getText()))) {
 			
-			AlertBox abox = new AlertBox();
-			abox.alertUsernameTaken(usernameInput.getText());
-			//what next?
+				aBox1 = new AlertBox();
+				aBox1.displayMessage(usernameInput.getText() + " username is taken!");
+				
+			}
+		
+			//create the new user customer
+			else {
+			
+				String firstNameString = firstNameInput.getText();
+				String lastNameString = lastNameInput.getText();
+				String SSNString = SSNInput.getText();
+				String streetAddressString = streetAddressInput.getText();
+				String cityString = cityInput.getText();
+				String stateString = stateInput.getText();
+				String zipCodeString = zipCodeInput.getText();
+				String phoneNumberString = phoneNumberInput.getText();
+				
+				String usernameString = usernameInput.getText();
+				String passwordString = passwordInput.getText();
+				String emailString = emailInput.getText();
+				String securityQuestionString = securityQuestionInput.getText();
+				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
+				
+				//int zipCodeStringToInt = Integer.parseInt(zipCodeString);
+				valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
+						zipCodeString, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
+				
+				aBox2 = new AlertBox();
+				aBox2.displayMessage("Account Created!");
+				
+				clearTextFields();
+			}
 		}
 		
-		//create the new user customer
 		else {
-			
-			String firstNameString = firstNameInput.getText();
-			String lastNameString = lastNameInput.getText();
-			String SSNString = SSNInput.getText();
-			String streetAddressString = streetAddressInput.getText();
-			String cityString = cityInput.getText();
-			String stateString = stateInput.getText();
-			String zipCodeString = zipCodeInput.getText();
-			String phoneNumberString = phoneNumberInput.getText();
-			
-			String usernameString = usernameInput.getText();
-			String passwordString = passwordInput.getText();
-			String emailString = emailInput.getText();
-			String securityQuestionString = securityQuestionInput.getText();
-			String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
-			
-			//int zipCodeStringToInt = Integer.parseInt(zipCodeString);
-			
-			valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
-					zipCodeString, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
-			
+			aBox3 = new AlertBox();
+			aBox3.displayMessage("zip code must be length of 5 and only digits");
 		}
 		
 	});
@@ -167,7 +214,6 @@ public class NewUserSignUp extends Application {
 		try {
 			log.start(window);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -182,6 +228,26 @@ public class NewUserSignUp extends Application {
 	
 	
 	}
+	
+	public void clearTextFields() {
+	firstNameInput.clear();
+	lastNameInput.clear();
+	SSNInput.clear();
+	streetAddressInput.clear();
+	cityInput.clear();
+	stateInput.clear();
+	zipCodeInput.clear();
+	phoneNumberInput.clear();
+	
+	usernameInput.clear();
+	passwordInput.clear();
+	emailInput.clear();
+	securityQuestionInput.clear();
+	securityQuestionAnswerInput.clear();
+	}
+	
+	
+	
 	
 	
 	//ignore, should i use this method or would it make it more confusing?

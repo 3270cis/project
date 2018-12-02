@@ -142,7 +142,6 @@ public class Login extends Application{
 			
 		});
 		
-		
 		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, 
 									loginButton, newUserButton, forgotPasswordButton);
 		
