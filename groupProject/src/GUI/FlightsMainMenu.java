@@ -36,6 +36,8 @@ public class FlightsMainMenu extends Application {
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.add(MainMenuButton, 0, 0);
+		grid.add(searchFlightsButton, 2, 3);
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

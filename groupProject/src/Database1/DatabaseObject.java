@@ -247,12 +247,6 @@ public class DatabaseObject {
 		return upassword;
 		
 	}
-	
-	
-	
-	
-	
-
 }
 	
 
