@@ -14,14 +14,14 @@ public class postgres {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://ec2-54-225-110-156.compute-1.amazonaws.com/d3r14stg9r3fd4", "sahrzfqchvludh", "906f8f4de585bb493c7078eb472c4cfc91fe2fbbe6f8af6f78f255631429398c");
 				
 			//jennifer "jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 			//kelly "jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass"
 			//hafsah connectivity: "jdbc:postgresql://localhost:5432/hafsahqazi", "postgres", "admin"
 			System.out.println("Database connected");
 			
-			PreparedStatement pstatement = connection.prepareStatement("select * from CustomerAirline"); 
+			PreparedStatement pstatement = connection.prepareStatement("select * from flight");
 			
 			pstatement.executeQuery();
 			

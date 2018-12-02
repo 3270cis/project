@@ -5,31 +5,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class FlightsMainMenu extends Application {
 	
 	Stage window;
-	Button searchFlightsButton;
-	Button bookFlightButton;
-	Button mainMenuButton;
-	Button myFlights;
-	
-	Label searchLabel;
-	Label fromLabel;
-	Label toLabel;
-	Label departLabel;
-	Label returnLabel;
-	Label numOfPassLabel;
-	ComboBox<String> cBoxFrom;
-	ComboBox<String> cBoxTo;
-	HBox hbox1;
+	/*Scene loginPage;
+	Scene registerPage;*/
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -46,48 +31,28 @@ public class FlightsMainMenu extends Application {
 		
 		window = primaryStage;
 		
-		searchFlightsButton = new Button("Search Flights");
-		//bookFlightButton = new Button("Book Flight");
-		//mainMenuButton = new Button("Main Menu");
-		myFlights = new Button("My Flights");
+		Button searchFlightsButton = new Button("Search Flights");
+		Button bookFlightButton = new Button("Book Flight");
+		Button MainMenuButton = new Button("Main Menu");
 		
-		searchLabel = new Label("Search for Flights");
-		searchLabel.setStyle("-fx-font-size: 28pt");
-		searchLabel.setAlignment(Pos.TOP_CENTER);
+		Label searchLabel = new Label("Search for Flights");
+		Label fromLabel = new Label("From");
+		Label toLabel = new Label("To");
+		Label departLabel = new Label("Depart Date");
+		Label returnLabel = new Label("Return Date");
 		
-		fromLabel = new Label("From");
-		fromLabel.setPadding(new Insets(10));
-		toLabel = new Label("To");
-		toLabel.setPadding(new Insets(10));
-		departLabel = new Label("Depart Date");
-		returnLabel = new Label("Return Date");
-		numOfPassLabel = new Label("Number of passengers");
-		
-		cBoxFrom = new ComboBox<>();
-		cBoxFrom.getItems().addAll("Atlanta (ATL)", "Paris (CDG)", "Tokyo (HND)", "Bogota (BOG)", "Dubai (DXB)", "Sydney (SYD)");
-		
-		cBoxTo = new ComboBox<>();
-		cBoxTo.getItems().addAll("Atlanta (ATL)", "Paris (CDG)", "Tokyo (HND)", "Bogota (BOG)", "Dubai (DXB)", "Sydney (SYD)");
-		
-		
-		
-		GridPane grid = new GridPane();
-		grid.setPadding(new Insets(10, 10, 10, 10));
-		grid.add(fromLabel, 0, 1);
-		grid.add(cBoxFrom, 1, 1);
-		
-		grid.add(toLabel, 0, 2);
-		
-		
-		/*bp.getChildren().addAll(searchFlightsButton, bookFlightButton, mainMenuButton, myFlights, searchLabel, fromLabel, toLabel,
-				
-								departLabel, returnLabel, numOfPassLabel, cBoxFrom, cBoxTo);*/
-								
-		
-		Scene scene = new Scene(grid, 700, 300);
-		window.setScene(scene);
-		window.setTitle("HelloWorld Airlines Flight Selection");
-		window.show();
+		BorderPane bp = new BorderPane();
+		bp.setPadding(new Insets(10, 10, 10, 10));
+//		bp.set(MainMenuButton, 0, 0);
+//		bp.add(searchFlightsButton, 0, 1, 1, 1 );
+//		bp.add(returnLabel, 5, 5, 2, 1);
+//
+//
+//
+//		Scene scene = new Scene(bp, 700, 300);
+//		window.setScene(scene);
+//		window.setTitle("HelloWorld Airlines Flight Selection");
+//		window.show();
 		
 		
 	
