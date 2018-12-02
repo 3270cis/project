@@ -1,7 +1,7 @@
 package GUI;
 import com.sun.javafx.scene.SceneEventDispatcher;
 
-import backend.ValueObject;
+import Backend.ValueObject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

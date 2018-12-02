@@ -1,4 +1,4 @@
-package database2;
+package Database1;
 
 //lucid
 //nocozubi@autowb.com user
@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import backend.Customer;
+import Backend.Customer;
 
 public class DatabaseObject {
 	

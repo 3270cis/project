@@ -1,7 +1,7 @@
 package GUI;
 
-import backend.User;
-import backend.ValueObject;
+import Backend.User;
+import Backend.ValueObject;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

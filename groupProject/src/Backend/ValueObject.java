@@ -1,10 +1,10 @@
-package backend;
+package Backend;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import database2.DatabaseObject;
+import Database1.DatabaseObject;
 
 public class ValueObject {
 	
