@@ -116,7 +116,7 @@ public class DatabaseObject {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			//connection to database
+			//connection to databaseeeeeeee
 			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
 			System.out.println("Database Connected :) 3");
 			
@@ -127,7 +127,7 @@ public class DatabaseObject {
 			
 			while (rSet.next()) {
 				String usernameInDB = rSet.getString("username"); //the username column in the DB
-				String upasswordInDB = rSet.getString("upassword"); //the upassword column in the DB
+				String upasswordInDB = rSet.getString("upassword"); //the upassword column in the DB 
 				
 				if(username.equals(usernameInDB) && password.equals(upasswordInDB)) {
 					userAndPassMatch = true;
