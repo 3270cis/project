@@ -43,17 +43,14 @@ public class FlightsMainMenu extends Application {
 		
 		BorderPane bp = new BorderPane();
 		bp.setPadding(new Insets(10, 10, 10, 10));
-//		bp.set(MainMenuButton, 0, 0);
-//		bp.add(searchFlightsButton, 0, 1, 1, 1 );
-//		bp.add(returnLabel, 5, 5, 2, 1);
-//
-//
-//
-//		Scene scene = new Scene(bp, 700, 300);
-//		window.setScene(scene);
-//		window.setTitle("HelloWorld Airlines Flight Selection");
-//		window.show();
-		
+
+
+
+		Scene scene = new Scene(bp, 700, 300);
+		window.setScene(scene);
+		window.setTitle("HelloWorld Airlines ");
+		window.show();
+	
 		
 	
 	}
