@@ -1,7 +1,7 @@
 package GUI;
 
 import backend.ValueObject;
-import database.DatabaseObject;
+import database2.DatabaseObject;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

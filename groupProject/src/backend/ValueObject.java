@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import database.DatabaseObject;
+import database2.DatabaseObject;
 
 public class ValueObject {
 	
