@@ -5,6 +5,12 @@ public class PasswordRetreival {
 	private String securityQuestion;
 	private String securityQuestionAnswer;
 	
+	public PasswordRetreival() {
+		
+		securityQuestion = "";
+		securityQuestionAnswer = "";
+	}
+	
 	
 	public String getSecurityQuestion() {
 		return securityQuestion;

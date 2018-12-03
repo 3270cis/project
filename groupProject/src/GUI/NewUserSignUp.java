@@ -1,5 +1,7 @@
 package GUI;
 
+import java.util.ArrayList;
+
 import Backend.User;
 import Backend.ValueObject;
 import javafx.application.Application;
@@ -51,6 +53,9 @@ public class NewUserSignUp extends Application {
 	TextField securityQuestionInput;
 	TextField securityQuestionAnswerInput;
 	
+	Button createAcctButton;
+	Button backToLoginButton;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -71,11 +76,11 @@ public class NewUserSignUp extends Application {
 	GridPane grid = new GridPane();
 	grid.setPadding(new Insets(10, 10, 10,10));
 	
-	Button createAcctButton = new Button("Create Account");
-	GridPane.setConstraints(createAcctButton, 1, 17);
+	createAcctButton = new Button("Create Account");
+	GridPane.setConstraints(createAcctButton, 1, 19);
 	
-	Button backToLoginButton = new Button("Back to Login");
-	GridPane.setConstraints(backToLoginButton, 0, 18);
+	backToLoginButton = new Button("Back to Login");
+	GridPane.setConstraints(backToLoginButton, 0, 19);
 	
 	//creates all the labels
 	firstName = new Label("first name : ");
@@ -136,10 +141,10 @@ public class NewUserSignUp extends Application {
 	GridPane.setConstraints(stateInput, 0, 12);
 	GridPane.setConstraints(zipCode, 0, 13);;
 	GridPane.setConstraints(zipCodeInput, 0, 14);
-	GridPane.setConstraints(country, 0, 17);
-	GridPane.setConstraints(countryInput, 0, 18);
-    GridPane.setConstraints(phoneNumber, 0, 15);
-    GridPane.setConstraints(phoneNumberInput, 0, 16);
+	GridPane.setConstraints(country, 0, 15);
+	GridPane.setConstraints(countryInput, 0, 16);
+    GridPane.setConstraints(phoneNumber, 0, 17);
+    GridPane.setConstraints(phoneNumberInput, 0, 18);
     
 	GridPane.setConstraints(username, 1, 1);
 	GridPane.setConstraints(usernameInput, 1, 2);;
@@ -154,11 +159,13 @@ public class NewUserSignUp extends Application {
 	
 	//adding all the textfields and labels into the grid 
   //creating a scene of a certain size, and adding the grid on it
-	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput
-			,state, stateInput, zipCode, zipCodeInput, country, countryInput, phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput
-			,securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, createAcctButton, backToLoginButton );
-	
-	
+	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, 
+							SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput,
+							state, stateInput, zipCode, zipCodeInput, country, countryInput, 
+							phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput ,
+							securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, 
+							createAcctButton, backToLoginButton );
+
 	createAcctButton.setOnAction(event -> {
 		
 		ValueObject valObj = new ValueObject();
@@ -180,25 +187,52 @@ public class NewUserSignUp extends Application {
 		
 			//create the new user customer
 			else {
-			
-				String firstNameString = firstNameInput.getText();
+				
+				ArrayList<String> customerArray = new ArrayList<>();
+				ArrayList<String> addressArray = new ArrayList<>();
+				ArrayList<String> passwordRereivalArray = new ArrayList<>();
+				
+				customerArray.add(firstNameInput.getText());
+				customerArray.add(lastNameInput.getText());
+				customerArray.add(SSNInput.getText());
+				customerArray.add(phoneNumberInput.getText());
+				customerArray.add(emailInput.getText());
+
+				addressArray.add(streetAddressInput.getText());
+				addressArray.add(cityInput.getText());
+				addressArray.add(stateInput.getText());
+				addressArray.add(zipCodeInput.getText());
+				addressArray.add(countryInput.getText());
+				
+				customerArray.add(usernameInput.getText());
+				customerArray.add(passwordInput.getText());
+				
+				passwordRereivalArray.add(securityQuestionInput.getText());
+				passwordRereivalArray.add(securityQuestionAnswerInput.getText());
+				
+				
+				//this code was making the user inputs into strings and passing all the strings into valueobject.
+				/*String firstNameString = firstNameInput.getText();
 				String lastNameString = lastNameInput.getText();
 				String SSNString = SSNInput.getText();
 				String streetAddressString = streetAddressInput.getText();
 				String cityString = cityInput.getText();
 				String stateString = stateInput.getText();
 				String zipCodeString = zipCodeInput.getText();
+				String countryString = countryInput.getText();
 				String phoneNumberString = phoneNumberInput.getText();
 				
 				String usernameString = usernameInput.getText();
 				String passwordString = passwordInput.getText();
 				String emailString = emailInput.getText();
 				String securityQuestionString = securityQuestionInput.getText();
-				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
+				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();*/
 				
-				//int zipCodeStringToInt = Integer.parseInt(zipCodeString);
-				valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
-						zipCodeString, phoneNumberString, usernameString, passwordString, emailString, securityQuestionString, securityQuestionAnswerString);
+				/*valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
+										zipCodeString, phoneNumberString, usernameString, passwordString,
+										emailString, securityQuestionString, securityQuestionAnswerString);*/
+				
+				valObj.createNewUser(customerArray, addressArray, passwordRereivalArray);
 				
 				aBox2 = new AlertBox();
 				aBox2.displayMessage("Account Created!");

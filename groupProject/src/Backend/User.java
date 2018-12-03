@@ -10,6 +10,8 @@ public abstract class User {
 	private String SSN;
 	private String phoneNumber;
 	private String email;
+	private String username;
+	private String password;
 	private int userID;
 	
 	
@@ -18,6 +20,8 @@ public abstract class User {
 		SSN = "";
 		phoneNumber = "";
 		email = "";
+		username = "";
+		password = "";
 		
 		this.userID = UserIdGenerator.generateID();
 		this.firstName = firstName;
@@ -97,15 +101,32 @@ public abstract class User {
 		this.userID = userID;
 	}
 	
-	
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
 	public abstract void deleteFlight();
 	
 	public abstract void addFlight();
-
-	
-	
-	
-	
-	
 
 }

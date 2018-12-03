@@ -3,7 +3,7 @@ package GUI;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Splashy extends Application {
+public class FlightReservations extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -13,11 +13,11 @@ public class Splashy extends Application {
 	public void init() throws Exception {
 		
 		super.init();
-	} 
-
+	}
 
 	@Override
-	public void start(Stage arg0) throws Exception {
+	public void start(Stage primaryStage) throws Exception {
+		
 	}
 
 }

@@ -91,7 +91,8 @@ public class Login extends Application{
 			
 			if (valObj.checkLoginCredentials(usernameInput.getText(), passwordInput.getText())) {
 				
-				FlightsMainMenu main = new FlightsMainMenu();
+				SearchFlightsMainMenu main = new SearchFlightsMainMenu();
+				
 				try {
 					main.start(window);
 				} catch (Exception e) {
@@ -136,7 +137,7 @@ public class Login extends Application{
 	//this method calls the AlertBoxText.java class. It confirms the user if he/she wants to exit the program.
 	public void closeProgram() {
 		AlertBox abox = new AlertBox();
-		Boolean answer = abox.displayWhenExit("Exit", "Close the program?");
+		Boolean answer = abox.displayWhenExit("Exit", "Exit the program?");
 		if(answer) {
 			Platform.exit();
 		}
