@@ -5,7 +5,7 @@ public class Flight {
 
 	private int flightNumber;
 	private final int CAPACITY= 20;
-	private FlightDetails flightDetails;
+	private FlightDetail flightDetails;
 	
 	Flight(){
 		
@@ -13,7 +13,7 @@ public class Flight {
 	
 	public Flight(int flightNumber ) {
 		
-		this.flightDetails = new FlightDetails(flightNumber);
+		this.flightDetails = new FlightDetail(flightNumber);
 		this.flightNumber =flightNumber;
 	}
 
@@ -28,11 +28,11 @@ public class Flight {
 		return CAPACITY;
 	}
 
-	public FlightDetails getFlightDetails() {
+	public FlightDetail getFlightDetails() {
 		return flightDetails;
 	}
 
-	public void setFlightDetails(FlightDetails flightDetails) {
+	public void setFlightDetails(FlightDetail flightDetails) {
 		this.flightDetails = flightDetails;
 	}
 	

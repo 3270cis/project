@@ -2,10 +2,14 @@ package Backend;
 
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import Database1.DatabaseObject;
+import javafx.scene.control.TextField;
 
 public class ValueObject {
 	
@@ -27,11 +31,69 @@ public class ValueObject {
 	}
 	
 	
-	public void createNewUser(String firstNameString, String lastNameString, String SSNString, String streetAddressString, String cityString, String stateString,
-			String zipCodeString, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString ) {
+	public void createNewUser(String firstNameString, String lastNameString, String SSNString, 
+			  String streetAddressString, String cityString, String stateString,
+			  String zipCodeString, String countryString, String phoneNumberString,
+			  String usernameString, String passwordString, String emailString,
+			  String securityQuestionString,String securityQuestionAnswerString ) {
+		
+		User newCustomer = new Customer(firstNameString, lastNameString);
+		newCustomer.setSSN(SSNString);
+		newCustomer.setPhoneNumber(phoneNumberString);
+		newCustomer.setEmail(emailString);
+		newCustomer.setUsername(usernameString);
+		newCustomer.setPassword(passwordString);
+		
+		Address newAddress = new Address(streetAddressString, cityString, stateString,
+										zipCodeString, countryString);
+		
+		PasswordRetreival passRetr = new PasswordRetreival();
+		passRetr.setSecurityQuestion(securityQuestionString);
+		passRetr.setSecurityQuestionAnswer(securityQuestionAnswerString);
+		
+		DatabaseObject dataObj = new DatabaseObject();
+		
+		dataObj.createNewCustomerInDB(newCustomer, newAddress, passRetr);
+		
+		
+	}
+	
+	/*public void createNewUser(ArrayList<String> customerArray,
+							  ArrayList<String> addressArray,
+							  ArrayList<String> passwordRereivalArray) {
+		
+		User newCustomer = new Customer(customerArray.get(0), customerArray.get(1));
+		newCustomer.setSSN(customerArray.get(2));
+		newCustomer.setPhoneNumber(customerArray.get(3));
+		newCustomer.setEmail(customerArray.get(4));
+		newCustomer.setUsername(customerArray.get(5));
+		newCustomer.setPassword(customerArray.get(6));
+		
+		Address newAddress = new Address(addressArray.get(0), addressArray.get(1), addressArray.get(2),
+									  addressArray.get(3), addressArray.get(4));
+		
+		PasswordRetreival passRetr = new PasswordRetreival();
+		passRetr.setSecurityQuestion(passwordRereivalArray.get(0));
+		passRetr.setSecurityQuestionAnswer(passwordRereivalArray.get(1));
+		
+		DatabaseObject dataObj = new DatabaseObject();
+		
+		dataObj.createNewCustomerInDB(newCustomer, newAddress, passRetr);
+		
+		
+	}
+	*/
+	
+	
+	
+/*	public void createNewUser(String firstNameString, String lastNameString, String SSNString, 
+							  String streetAddressString, String cityString, String stateString,
+							  String zipCodeString, String countryString, String phoneNumberString,
+							  String usernameString, String passwordString, String emailString,
+							  String securityQuestionString,String securityQuestionAnswerString ) {*/
 		
 
-		//polymorphism!
+/*		//polymorphism!
 		User newCustomer = new Customer(firstNameString, lastNameString);
 		User newAdmin = new Admin("bob", "bobby");
 		
@@ -41,18 +103,13 @@ public class ValueObject {
 		
 		//polymorphism
 		//newCustomer
-		Address newAddress = new Address();
 		
-		DatabaseObject dataObj = new DatabaseObject();
+		DatabaseObject dataObj = new DatabaseObject();*/
 		
-		dataObj.createNewCustomerInDB(newCustomer);
+		//sooooo this method is not going to work cause we split the customer class
+		//dataObj.createNewCustomerInDB(newCustomer);
 		
-		/*dataObj.createNewCustomerInDB(newCustomer.getFirstName(),newCustomer.getLastName(),newCustomer.getSSN(),
-				newCustomer.getStreetAddress(), newCustomer.getCity(),newCustomer.getState(),
-				newCustomer.getZipCode(), newCustomer.getPhoneNumber(), newCustomer.getUserName(), 
-				newCustomer.getPassword(), newCustomer.getEmail(), newCustomer.getSecurityQuestion(), newCustomer.getSecurityQuestionAnswer());*/
-		
-	}
+	
 
 	public boolean checkLoginCredentials(String username, String password) {
 		
@@ -117,6 +174,42 @@ public class ValueObject {
 		else {
 			return false;
 		}
+	}
+
+	
+	@SuppressWarnings("deprecation")
+/*	A program element annotated @Deprecated is one that programmers are discouraged from using,
+	typically because it is dangerous, or because a better alternative exists. 
+	Compilers warn when a deprecated program element is used or overridden in non-deprecated code.*/
+	public boolean didCustomerInputFromToAndDateCorrect(String from, String to, String flightDate) {
+		
+		Date date1;
+		Date date2;
+		
+		try {
+			
+			date1 = new Date(flightDate);
+			date2 = new Date();
+			
+			//if the flight is before today's date OR if the flight is today, return false;
+			if(date1.before(date2) || date1.equals(date2)) {
+				
+				System.out.println("flight date: " + date1);
+				System.out.println("today da0te: " +date2);
+				return false;
+			}	
+				//if both departure city and destination match, return false
+			if (from.equals(to)) {
+				return false;
+			} 
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("check customer input method");
+		}
+		
+		return true;
 	}
 	
 	

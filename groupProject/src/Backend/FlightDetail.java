@@ -1,6 +1,6 @@
 package Backend;
 
-public class FlightDetails {
+public class FlightDetail{
 	
 	private String departureDate;
 	private String arrivalDate;
@@ -9,7 +9,7 @@ public class FlightDetails {
 	private int flightNumber;
 	
 	
-	public FlightDetails(int flightNumber,String departureCity, String destination, String departureDate, String arrivalDate ) {
+	public FlightDetail(int flightNumber,String departureCity, String destination, String departureDate, String arrivalDate ) {
 		this.departureDate = departureDate;
 		this.arrivalDate = arrivalDate;
 		this.destination = destination;
@@ -17,7 +17,7 @@ public class FlightDetails {
 		this.flightNumber = flightNumber;
 	}
 	
-	public FlightDetails(int flightNumber) {
+	public FlightDetail(int flightNumber) {
 		this.departureDate = "";
 		this.arrivalDate = "";
 		this.destination ="";

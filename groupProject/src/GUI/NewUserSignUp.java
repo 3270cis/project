@@ -188,7 +188,7 @@ public class NewUserSignUp extends Application {
 			//create the new user customer
 			else {
 				
-				ArrayList<String> customerArray = new ArrayList<>();
+				/*ArrayList<String> customerArray = new ArrayList<>();
 				ArrayList<String> addressArray = new ArrayList<>();
 				ArrayList<String> passwordRereivalArray = new ArrayList<>();
 				
@@ -208,11 +208,11 @@ public class NewUserSignUp extends Application {
 				customerArray.add(passwordInput.getText());
 				
 				passwordRereivalArray.add(securityQuestionInput.getText());
-				passwordRereivalArray.add(securityQuestionAnswerInput.getText());
+				passwordRereivalArray.add(securityQuestionAnswerInput.getText());*/
 				
 				
 				//this code was making the user inputs into strings and passing all the strings into valueobject.
-				/*String firstNameString = firstNameInput.getText();
+				String firstNameString = firstNameInput.getText();
 				String lastNameString = lastNameInput.getText();
 				String SSNString = SSNInput.getText();
 				String streetAddressString = streetAddressInput.getText();
@@ -226,16 +226,16 @@ public class NewUserSignUp extends Application {
 				String passwordString = passwordInput.getText();
 				String emailString = emailInput.getText();
 				String securityQuestionString = securityQuestionInput.getText();
-				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();*/
+				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
 				
-				/*valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
-										zipCodeString, phoneNumberString, usernameString, passwordString,
-										emailString, securityQuestionString, securityQuestionAnswerString);*/
+				valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
+										zipCodeString,countryString, phoneNumberString, usernameString, passwordString,
+										emailString, securityQuestionString, securityQuestionAnswerString);
 				
-				valObj.createNewUser(customerArray, addressArray, passwordRereivalArray);
+				/*valObj.createNewUser(customerArray, addressArray, passwordRereivalArray);*/
 				
-				aBox2 = new AlertBox();
-				aBox2.displayMessage("Account Created!");
+				/*aBox2 = new AlertBox();
+				aBox2.displayMessage("Account Created!");*/
 				
 				clearTextFields();
 			}

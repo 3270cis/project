@@ -7,43 +7,53 @@ public class Reservation {
 	
 	private int reservationNo;
 	private LocalDate dateCreated;
-	FlightDetails flightDetail;
+	FlightDetail flightInfo;
 	
 	public Reservation(int reservationNo) {
 	
 		this.reservationNo = reservationNo;
-		this.flightDetail = new FlightDetails();
-		this.dateCreated =  java.time.LocalDate.now();  
+		this.dateCreated =  LocalDate.now();  
 		
 	}
 	
 	
-	public Reservation(int reservationNo, FlightDetails flightDetail1) {
+	public Reservation(int reservationNo, FlightDetail flightInfo ) {
 		
 		this.reservationNo = reservationNo;
-		this.flightDetail = flightDetail1;
+		this.flightInfo = flightInfo;
 	}
+
 
 	public int getReservationNo() {
 		return reservationNo;
 	}
 
+
 	public void setReservationNo(int reservationNo) {
 		this.reservationNo = reservationNo;
 	}
+
 
 	public LocalDate getDateCreated() {
 		return dateCreated;
 	}
 
 
-	public FlightDetails getFlightDetail1() {
-		return flightDetail;
+	public void setDateCreated(LocalDate dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
-	public void setFlightDetail1(FlightDetails flightDetail1) {
-		this.flightDetail = flightDetail1;
+
+	public FlightDetail getFlightInfo() {
+		return flightInfo;
 	}
+
+
+	public void setFlightInfo(FlightDetail flightInfo) {
+		this.flightInfo = flightInfo;
+	}
+
+	
 	
 	
 	

@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Backend.Address;
 import Backend.Customer;
+import Backend.PasswordRetreival;
+import Backend.User;
 
 public class DatabaseObject {
 	
@@ -73,7 +76,8 @@ public class DatabaseObject {
 		
 	}
 	
-	public void createNewCustomerInDB(Customer newCustomer) {
+	//the original method
+	/*public void createNewCustomerInDB(Customer newCustomer) {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -111,7 +115,7 @@ public class DatabaseObject {
 			}
 		
 		
-	}
+	}*/
 
 	public boolean isCorrectLoginCredentials(String username, String password) {
 	
@@ -120,7 +124,7 @@ public class DatabaseObject {
 		try {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
-			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 3");
 			
 			String quertyString = "SELECT username, upassword FROM customerairline";	
@@ -155,7 +159,7 @@ public class DatabaseObject {
 		try {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
-			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 4");
 			
 			String quertyString = "SELECT username, securityquestion FROM customerairline";	
@@ -190,7 +194,7 @@ public class DatabaseObject {
 		try {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
-			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 5");
 			
 			String quertyString = "SELECT securityquestion, securityquestionanswer FROM customerairline";	
@@ -223,7 +227,7 @@ public class DatabaseObject {
 		try {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
-			Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AirlineDatabase", "postgres", "passpass");
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 6");
 			
 			String quertyString = "SELECT username, upassword FROM customerairline";	
@@ -248,6 +252,95 @@ public class DatabaseObject {
 		}
 		
 		return upassword;
+		
+	}
+
+	public void createNewCustomerInDB(User newCustomer, Address newAddress, PasswordRetreival passRetr) {
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			//connection to database
+			Connection connect1 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 7");
+			
+			//well....does that mean i have to create 3 different queries? 
+			String quertyString1 = "INSERT INTO users (customerid, firstname, lastname, ssn, phonenumber, username, upassword, email) "
+									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 	
+			//create statement
+			PreparedStatement preStatement1 = connect1.prepareStatement(quertyString1);
+			preStatement1.setInt(1, newCustomer.getUserID());
+			preStatement1.setString(2, newCustomer.getFirstName() );
+			preStatement1.setString(3, newCustomer.getLastName());
+			preStatement1.setString(4, newCustomer.getSSN());
+			preStatement1.setString(5, newCustomer.getPhoneNumber());
+			preStatement1.setString(6, newCustomer.getUsername());
+			preStatement1.setString(7, newCustomer.getPassword());
+			preStatement1.setString(8, newCustomer.getEmail());
+			//execute SQL query
+			preStatement1.executeUpdate();
+			connect1.close();
+			
+			Connection connect2 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 8");
+			
+			String quertyString2 = "INSERT INTO address (streetaddress, city, state, zipcode, customerID)"
+									+ " VALUES (?, ?, ?, ?, ?)"; 
+			
+			PreparedStatement preStatement2 = connect2.prepareStatement(quertyString2);
+			preStatement2.setString(1, newAddress.getStreetAddress());
+			preStatement2.setString(2, newAddress.getCity());
+			preStatement2.setString(3, newAddress.getState());
+			preStatement2.setString(4, newAddress.getZipCode());
+			preStatement2.setInt(5, newCustomer.getUserID());
+			//need to add country
+			preStatement2.executeUpdate();
+			connect2.close();
+			
+			Connection connect3 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 9");
+			
+			String quertyString3 = "INSERT INTO passwordRetrieval (securityquestion, securityquestionanswer)"
+									+ " VALUES (?, ?)"; 
+			
+			PreparedStatement preStatement3 = connect3.prepareStatement(quertyString3);
+			preStatement3.setString(1, passRetr.getSecurityQuestion());
+			preStatement3.setString(2, passRetr.getSecurityQuestionAnswer());
+			
+			preStatement3.executeUpdate();
+			connect3.close();
+			
+			System.out.println("congrats createNewCustomerInDB method");
+		}
+			catch (Exception exception) {	
+				exception.printStackTrace();
+			}
+		
+		
+		
+	}
+
+	public void searchTheDBForFlight(String departureCity, String destination, String date) {
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			//connection to database
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 10");
+			
+			String quertyString = "SELECT destination, departurecity FROM flightdetails";	 //WE HAVE TO COME UP WITH CERTAIN DATES IN THE DB
+			//create statement
+			PreparedStatement preStatement = connect.prepareStatement(quertyString);
+			ResultSet rSet = preStatement.executeQuery();
+			
+			while(rSet.next()) {
+			
+			}
+		}	
+		
+		catch (Exception exception) {	
+				exception.printStackTrace();
+		}
+		
 		
 	}
 	
