@@ -27,7 +27,7 @@ public class DatabaseObject {
 		
 	}
 	
-	public boolean usernameCheckInDB(String username) {
+	public boolean doesUsernameExistInDB(String username) {
 		
 		connection = null;
 		boolean isUsernameAlreadyTaken = false;
@@ -129,7 +129,7 @@ public class DatabaseObject {
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 2");
 			
-			String quertyString = "SELECT username, upassword FROM customerairline";	
+			String quertyString = "SELECT username, upassword FROM users";	
 			//create statement
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
 			ResultSet rSet = preStatement.executeQuery();
@@ -156,7 +156,9 @@ public class DatabaseObject {
 	}
 	
 	
-	public boolean isCorrectAdminCredentialsInDB(String username, String password) {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public boolean isCorrectAdminCredentialsInDB(String username, String password) {
+		
+		boolean userAndPassMatch = false;
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -164,10 +166,22 @@ public class DatabaseObject {
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 3");
 			
-			String quertyString = "SELECT securityquestion, username FROM passwordretrieval";//HAVE TO FIGURE OUT THE ADMIN CREDENTIALS!
+			String quertyString = "SELECT username, upassword FROM admin";//HAVE TO FIGURE OUT THE ADMIN CREDENTIALS!
 			//create statement
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
 			ResultSet rSet = preStatement.executeQuery();
+			
+			while (rSet.next()) {
+				String usernameInDB = rSet.getString("username"); //the adminusername column in the DB
+				String upasswordInDB = rSet.getString("upassword"); //the adminpassword column in the DB 
+				
+				if(username.equals(usernameInDB) && password.equals(upasswordInDB)) {
+					userAndPassMatch = true;
+					System.out.println("sucessful login");
+					connect.close();
+					break;
+				}
+			}
 			
 		} 
 			
@@ -175,7 +189,7 @@ public class DatabaseObject {
 			exception.printStackTrace();
 		}
 		
-
+		return userAndPassMatch;
 		
 	}
 
@@ -298,7 +312,7 @@ public class DatabaseObject {
 			String quertyString1 = "INSERT INTO users (userid, firstname, lastname, ssn, phonenumber, username, upassword, email) "
 									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 
 			
-			int temp = 1050; //DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11!!
+			int temp = 1070; //DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11!!
 			
 			//create statement
 			PreparedStatement preStatement1 = connect1.prepareStatement(quertyString1);
@@ -378,6 +392,50 @@ public class DatabaseObject {
 		}
 		
 		
+	}
+
+	public boolean doesUsernameQuestionAndAnswerMatch(String username, String secQuestion, String secAnswer) {
+		
+		boolean doesItAllMatch = false;
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			//connection to database
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 11");
+			
+			String quertyString = "SELECT securityquestion, securityanswer, username FROM passwordretrieval";
+			//create statement
+			PreparedStatement preStatement = connect.prepareStatement(quertyString);
+			ResultSet rSet = preStatement.executeQuery();
+			
+				while(rSet.next()) {
+				
+				String secQuestionInDB = rSet.getString("securityquestion");
+				String secAnswerInDB = rSet.getString("securityanswer");
+				String usernameInDB = rSet.getString("username");
+				
+					if(secAnswerInDB.equalsIgnoreCase(secAnswer) && usernameInDB.equalsIgnoreCase(username)
+																&& secQuestionInDB.equalsIgnoreCase(secQuestion))  {
+						
+					
+									doesItAllMatch = true;
+									connect.close();
+									break;
+					}
+					
+					else {
+						doesItAllMatch = false;
+					}
+					
+				}
+		}	
+		
+		catch (Exception exception) {	
+				exception.printStackTrace();
+		}
+		
+		return doesItAllMatch;
 	}
 	
 	

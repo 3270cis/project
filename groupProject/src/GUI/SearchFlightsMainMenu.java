@@ -165,12 +165,12 @@ public class SearchFlightsMainMenu extends Application {
 
 		mainMenuButton.setOnAction(event -> {
 			
-			MainMenu main = new MainMenu();
-			try {
-				main.start(window);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				MainMenu main = new MainMenu();
+				try {
+					main.start(window);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			
 		});
 								

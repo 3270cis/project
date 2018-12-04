@@ -21,7 +21,7 @@ public class ValueObject {
 		
 		DatabaseObject dataObj = new DatabaseObject();
 		
-			if (dataObj.usernameCheckInDB(username) == true) {
+			if (dataObj.doesUsernameExistInDB(username) == true) {
 				return true;
 			}
 			
@@ -143,8 +143,10 @@ public class ValueObject {
 			
 		if(!username.isEmpty() && !password.isEmpty()) {
 			
-			if(dataObj.isCorrectAdminCredentialsInDB(username, password)) { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			if(dataObj.isCorrectAdminCredentialsInDB(username, password)){
+				System.out.println("sucess admin");
 				return true;
+				
 			}
 		
 			else {
@@ -262,6 +264,26 @@ public class ValueObject {
 		}
 		System.out.println("3");
 		return isValid;
+	
+	}
+
+	public boolean isCorrectInputForPasswordRetrieval(String username, String secQuestion, String secAnswer) {
+		
+		DatabaseObject dataObj = new DatabaseObject();
+		
+	
+			if(dataObj.doesUsernameQuestionAndAnswerMatch(username, secQuestion, secAnswer)) {
+				
+				return true;
+				
+			}
+			
+			else {
+			
+			return false;
+			
+			}
+		
 	
 	}
 	

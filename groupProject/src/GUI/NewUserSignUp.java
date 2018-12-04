@@ -60,6 +60,7 @@ public class NewUserSignUp extends Application {
 	Button backToLoginButton;
 	
 	ComboBox<String> listOfState;
+	ComboBox<String> listOfSecQuestion;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -130,7 +131,7 @@ public class NewUserSignUp extends Application {
 	passwordInput = new PasswordField();
 	emailInput = new TextField();
 	emailInput.setPromptText("example@email.com");
-	securityQuestionInput = new TextField();
+	//securityQuestionInput = new TextField();
 	securityQuestionAnswerInput = new TextField();
 	
 	 listOfState = new ComboBox<>();
@@ -138,6 +139,8 @@ public class NewUserSignUp extends Application {
 	    							"IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", 
 	    							"ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", 
 	    							"TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");
+	 listOfSecQuestion = new ComboBox<>();
+	 listOfSecQuestion.getItems().addAll("What is your favorite class?", "What is your favorite food?", "What city were you born?");
 	
 	//saying where each textfield and labels should go
 	//how do you make it pretty?
@@ -167,7 +170,7 @@ public class NewUserSignUp extends Application {
     GridPane.setConstraints(email, 1, 5);
 	GridPane.setConstraints(emailInput, 1, 6);;
 	GridPane.setConstraints(securityQuestion, 1, 7);
-    GridPane.setConstraints(securityQuestionInput, 1, 8);
+    GridPane.setConstraints(listOfSecQuestion, 1, 8);
     GridPane.setConstraints(securityQuestionAnswer, 1, 9);
     GridPane.setConstraints(securityQuestionAnswerInput, 1, 10);
     
@@ -179,7 +182,7 @@ public class NewUserSignUp extends Application {
 							SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput,
 							state, listOfState, zipCode, zipCodeInput, country, countryInput, 
 							phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput ,
-							securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, 
+							securityQuestion,listOfSecQuestion, securityQuestionAnswer, securityQuestionAnswerInput, 
 							createAcctButton, backToLoginButton );
 
 	createAcctButton.setOnAction(event -> {
@@ -229,7 +232,7 @@ public class NewUserSignUp extends Application {
 				valObj.createNewUser(firstNameInput.getText(), lastNameInput.getText(), SSNInput.getText(), streetAddressInput.getText(), cityInput.getText(),  
 									listOfState.getValue(), zipCodeInput.getText(), countryInput.getText(), phoneNumberInput.getText(),
 									usernameInput.getText(), passwordInput.getText(), emailInput.getText(), 
-									securityQuestionInput.getText(), securityQuestionAnswerInput.getText());
+									listOfSecQuestion.getValue(), securityQuestionAnswerInput.getText());
 				
 				
 				/*valObj.createNewUser(customerArray, addressArray, passwordRereivalArray);*/
@@ -282,7 +285,7 @@ public class NewUserSignUp extends Application {
 	usernameInput.clear();
 	passwordInput.clear();
 	emailInput.clear();
-	securityQuestionInput.clear();
+	//securityQuestionInput.clear();
 	securityQuestionAnswerInput.clear();
 	}
 	

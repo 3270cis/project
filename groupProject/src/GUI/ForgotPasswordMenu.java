@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -21,12 +22,15 @@ public class ForgotPasswordMenu extends Application {
 	Label usernameLabel;
 	TextField usernameInput;
 	
-	Button getSecButton;
 	Button backToLoginButton;
 	Button getPassButton;
+	Button submitButton;
 	
 	Label secQuestionLabel;
 	TextField secQuestionAnswerInput;
+	
+	ComboBox<String> listOfSecQuestion;
+	
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -45,56 +49,59 @@ public class ForgotPasswordMenu extends Application {
 		
 		label = new Label("Enter your username and click sumbit, then answer the security question to retrieve your password.");
 		usernameLabel = new Label("Enter Username: ");
+		secQuestionLabel = new Label("Select security question:");
 		
 		usernameInput = new TextField();
 		usernameInput.setPromptText("username"); 
 		
-		getSecButton = new Button("Get Security Question");
 		backToLoginButton = new Button("Back to Login");
+		submitButton = new Button("Submit");
+		secQuestionAnswerInput = new TextField();
+		secQuestionAnswerInput.setPromptText("answer");
+		
+		listOfSecQuestion = new ComboBox<>();
+		listOfSecQuestion.getItems().addAll("What is your favorite class?", "What is your favorite food?", "What city were you born?");
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.setVgap(10);
 		
 		grid.add(label, 0, 0);
 		grid.add(usernameLabel, 0, 1);
 		grid.add(usernameInput, 0, 2);
-		grid.add(getSecButton, 3, 2);
-		grid.add(backToLoginButton, 0, 3);
+		grid.add(secQuestionLabel, 0, 3);
+		grid.add(backToLoginButton, 0, 5);
+		grid.add(submitButton, 1, 5);
+		grid.add(listOfSecQuestion, 0, 4);
+		grid.add(secQuestionAnswerInput, 0, 5);
 		
-		getSecButton.setOnAction(event -> {
+		submitButton.setOnAction(event -> {
 			
 			ValueObject valObj = new ValueObject();
+			AlertBox aBox1;
+			AlertBox aBox2;
 			
-			if (valObj.doesUsernameExist(usernameInput.getText())) {
+			if (valObj.isCorrectInputForPasswordRetrieval(usernameInput.getText(), 
+												listOfSecQuestion.getValue(), secQuestionAnswerInput.getText())) {
 				
+					
+					DatabaseObject dataObj = new DatabaseObject();
 				
-				DatabaseObject dataObj;dataObj = new DatabaseObject();
-				secQuestion = dataObj.getSecurityQuestionDB(usernameInput.getText());
-				
-				getPassButton = new Button("Get Your Password");
-				secQuestionLabel = new Label(secQuestion);
-				secQuestionAnswerInput = new TextField();
-				secQuestionAnswerInput.setPromptText("enter your aswer");
-				grid.add(getPassButton, 2, 3);
-				grid.add(secQuestionLabel, 2, 2);
-				grid.add(secQuestionAnswerInput, 2, 4);
-				
+					aBox1 = new AlertBox();
+					aBox1.displayMessage("your password is: " + dataObj.getPasswordDB(usernameInput.getText()));
 			
 			}
 			
 			else {
 				
-				AlertBox aBox = new AlertBox();
-				aBox.displayMessage("Invalid username");
+				aBox2 = new AlertBox();
+				aBox2.displayMessage("Check your inputs!");
 				
 			}
-		});
-		
-		
-		getPassButton.setOnAction(event -> {
-			
-			//LOOK, HOW TO MAKE SURE THE USER ACTUALLY INPUTS SOMETHINGN AND NOT LEFT BLANK?
+				
+				
+				
 			
 			
 		});

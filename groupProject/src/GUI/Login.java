@@ -125,7 +125,9 @@ public class Login extends Application{
 		
 		adminLoginInButton.setOnAction(event -> {
 			
-			ValueObject valObj = new ValueObject(); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+			
+			ValueObject valObj = new ValueObject();
 			
 			if(valObj.isCorrectAdminCredentials(usernameInput.getText(), passwordInput.getText())) {
 			
