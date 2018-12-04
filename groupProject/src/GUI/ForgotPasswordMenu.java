@@ -17,6 +17,17 @@ public class ForgotPasswordMenu extends Application {
 	Stage window;
 	String secQuestion = null;
 	
+	Label label;
+	Label usernameLabel;
+	TextField usernameInput;
+	
+	Button getSecButton;
+	Button backToLoginButton;
+	Button getPassButton;
+	
+	Label secQuestionLabel;
+	TextField secQuestionAnswerInput;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -32,40 +43,44 @@ public class ForgotPasswordMenu extends Application {
 	
 		window = primaryStage;
 		
+		label = new Label("Enter your username and click sumbit, then answer the security question to retrieve your password.");
+		usernameLabel = new Label("Enter Username: ");
+		
+		usernameInput = new TextField();
+		usernameInput.setPromptText("username"); 
+		
+		getSecButton = new Button("Get Security Question");
+		backToLoginButton = new Button("Back to Login");
+		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		
-		Label label = new Label("Enter your username and click sumbit, then answer the security question to retrieve your password.");
 		grid.add(label, 0, 0);
-		
-		Label usernameLabel = new Label("Enter Username: ");
 		grid.add(usernameLabel, 0, 1);
-		
-		TextField usernameInput = new TextField();
-		usernameInput.setPromptText("username"); 
 		grid.add(usernameInput, 0, 2);
-		
-		Button submitButton = new Button("Submit");
-		grid.add(submitButton, 3, 2);
-		
-		Button backToLoginButton = new Button("Back to Login");
+		grid.add(getSecButton, 3, 2);
 		grid.add(backToLoginButton, 0, 3);
 		
-		submitButton.setOnAction(event -> {
+		getSecButton.setOnAction(event -> {
+			
 			ValueObject valObj = new ValueObject();
 			
 			if (valObj.doesUsernameExist(usernameInput.getText())) {
 				
-				DatabaseObject dataObj = new DatabaseObject();
+				
+				DatabaseObject dataObj;dataObj = new DatabaseObject();
 				secQuestion = dataObj.getSecurityQuestionDB(usernameInput.getText());
 				
-				SecurityQuestionMenu sqMenu = new SecurityQuestionMenu(secQuestion, usernameInput.getText());
-				try {
-					sqMenu.start(window);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				getPassButton = new Button("Get Your Password");
+				secQuestionLabel = new Label(secQuestion);
+				secQuestionAnswerInput = new TextField();
+				secQuestionAnswerInput.setPromptText("enter your aswer");
+				grid.add(getPassButton, 2, 3);
+				grid.add(secQuestionLabel, 2, 2);
+				grid.add(secQuestionAnswerInput, 2, 4);
+				
+			
 			}
 			
 			else {
@@ -74,6 +89,14 @@ public class ForgotPasswordMenu extends Application {
 				aBox.displayMessage("Invalid username");
 				
 			}
+		});
+		
+		
+		getPassButton.setOnAction(event -> {
+			
+			//LOOK, HOW TO MAKE SURE THE USER ACTUALLY INPUTS SOMETHINGN AND NOT LEFT BLANK?
+			
+			
 		});
 		
 		

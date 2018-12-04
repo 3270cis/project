@@ -6,8 +6,10 @@ import Backend.User;
 import Backend.ValueObject;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,6 +31,7 @@ public class NewUserSignUp extends Application {
 	Label zipCode;
 	Label country;
 	Label phoneNumber;
+	Label Glad; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 	
 	Label username;
 	Label password;
@@ -56,6 +59,8 @@ public class NewUserSignUp extends Application {
 	Button createAcctButton;
 	Button backToLoginButton;
 	
+	ComboBox<String> listOfState;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -75,6 +80,9 @@ public class NewUserSignUp extends Application {
 	//creates the gridpane window
 	GridPane grid = new GridPane();
 	grid.setPadding(new Insets(10, 10, 10,10));
+	grid.setVgap(5);
+	grid.setHgap(10);
+	grid.setAlignment(Pos.BASELINE_CENTER);
 	
 	createAcctButton = new Button("Create Account");
 	GridPane.setConstraints(createAcctButton, 1, 19);
@@ -110,8 +118,8 @@ public class NewUserSignUp extends Application {
 	streetAddressInput.setPromptText("35 Broad Street");
 	cityInput = new TextField();
 	cityInput.setPromptText("Atlanta");
-	stateInput = new TextField();
-	stateInput.setPromptText("GA");
+	/*stateInput = new TextField();
+	stateInput.setPromptText("GA");*/
 	zipCodeInput = new TextField();
 	zipCodeInput.setPromptText("30303");
 	countryInput = new TextField();
@@ -124,6 +132,12 @@ public class NewUserSignUp extends Application {
 	emailInput.setPromptText("example@email.com");
 	securityQuestionInput = new TextField();
 	securityQuestionAnswerInput = new TextField();
+	
+	 listOfState = new ComboBox<>();
+	 listOfState.getItems().addAll("AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", 
+	    							"IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", 
+	    							"ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", 
+	    							"TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");
 	
 	//saying where each textfield and labels should go
 	//how do you make it pretty?
@@ -138,7 +152,7 @@ public class NewUserSignUp extends Application {
 	GridPane.setConstraints(city, 0, 9);
 	GridPane.setConstraints(cityInput, 0, 10);
 	GridPane.setConstraints(state, 0, 11);;
-	GridPane.setConstraints(stateInput, 0, 12);
+	GridPane.setConstraints(listOfState, 0, 12);
 	GridPane.setConstraints(zipCode, 0, 13);;
 	GridPane.setConstraints(zipCodeInput, 0, 14);
 	GridPane.setConstraints(country, 0, 15);
@@ -156,12 +170,14 @@ public class NewUserSignUp extends Application {
     GridPane.setConstraints(securityQuestionInput, 1, 8);
     GridPane.setConstraints(securityQuestionAnswer, 1, 9);
     GridPane.setConstraints(securityQuestionAnswerInput, 1, 10);
+    
+
 	
 	//adding all the textfields and labels into the grid 
   //creating a scene of a certain size, and adding the grid on it
 	grid.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, 
 							SSN, SSNInput, streetAddress, streetAddressInput, city, cityInput,
-							state, stateInput, zipCode, zipCodeInput, country, countryInput, 
+							state, listOfState, zipCode, zipCodeInput, country, countryInput, 
 							phoneNumber, phoneNumberInput, username, usernameInput, password, passwordInput, email, emailInput ,
 							securityQuestion,securityQuestionInput, securityQuestionAnswer, securityQuestionAnswerInput, 
 							createAcctButton, backToLoginButton );
@@ -176,7 +192,7 @@ public class NewUserSignUp extends Application {
 		//checks zipcode...maybe i need a method that passes and checks all the inputs at the same time -__- , why didn't i do that earlier? fail
 		//or maybe just past in some of the items at a time, have methods for checking strings and not string inputs
 		//check fields inputs to make sure they're not left blank
-		if(valObj.isValidZipCode(zipCodeInput.getText())) {
+		if(valObj.isValidZipCode(zipCodeInput.getText()) || valObj.isValidPhoneNumber(phoneNumberInput.getText()) ) {
 		
 			if (valObj.doesUsernameExist((usernameInput.getText()))) {
 			
@@ -187,37 +203,13 @@ public class NewUserSignUp extends Application {
 		
 			//create the new user customer
 			else {
-				
-				/*ArrayList<String> customerArray = new ArrayList<>();
-				ArrayList<String> addressArray = new ArrayList<>();
-				ArrayList<String> passwordRereivalArray = new ArrayList<>();
-				
-				customerArray.add(firstNameInput.getText());
-				customerArray.add(lastNameInput.getText());
-				customerArray.add(SSNInput.getText());
-				customerArray.add(phoneNumberInput.getText());
-				customerArray.add(emailInput.getText());
-
-				addressArray.add(streetAddressInput.getText());
-				addressArray.add(cityInput.getText());
-				addressArray.add(stateInput.getText());
-				addressArray.add(zipCodeInput.getText());
-				addressArray.add(countryInput.getText());
-				
-				customerArray.add(usernameInput.getText());
-				customerArray.add(passwordInput.getText());
-				
-				passwordRereivalArray.add(securityQuestionInput.getText());
-				passwordRereivalArray.add(securityQuestionAnswerInput.getText());*/
-				
-				
 				//this code was making the user inputs into strings and passing all the strings into valueobject.
-				String firstNameString = firstNameInput.getText();
+				/*String firstNameString = firstNameInput.getText();
 				String lastNameString = lastNameInput.getText();
 				String SSNString = SSNInput.getText();
 				String streetAddressString = streetAddressInput.getText();
 				String cityString = cityInput.getText();
-				String stateString = stateInput.getText();
+				String stateString = ( ((TextField)listOfState.getEditor()).getText() ); //dropdox box to string
 				String zipCodeString = zipCodeInput.getText();
 				String countryString = countryInput.getText();
 				String phoneNumberString = phoneNumberInput.getText();
@@ -226,11 +218,19 @@ public class NewUserSignUp extends Application {
 				String passwordString = passwordInput.getText();
 				String emailString = emailInput.getText();
 				String securityQuestionString = securityQuestionInput.getText();
-				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();
+				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();*/
 				
-				valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
+				/*valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
 										zipCodeString,countryString, phoneNumberString, usernameString, passwordString,
-										emailString, securityQuestionString, securityQuestionAnswerString);
+										emailString, securityQuestionString, securityQuestionAnswerString);*/
+				
+				
+				
+				valObj.createNewUser(firstNameInput.getText(), lastNameInput.getText(), SSNInput.getText(), streetAddressInput.getText(), cityInput.getText(),  
+									listOfState.getValue(), zipCodeInput.getText(), countryInput.getText(), phoneNumberInput.getText(),
+									usernameInput.getText(), passwordInput.getText(), emailInput.getText(), 
+									securityQuestionInput.getText(), securityQuestionAnswerInput.getText());
+				
 				
 				/*valObj.createNewUser(customerArray, addressArray, passwordRereivalArray);*/
 				
@@ -243,7 +243,7 @@ public class NewUserSignUp extends Application {
 		
 		else {
 			aBox3 = new AlertBox();
-			aBox3.displayMessage("zip code must be length of 5 and only digits");
+			aBox3.displayMessage("Please check number format in zip code or phone number");
 		}
 		
 	});
@@ -261,7 +261,7 @@ public class NewUserSignUp extends Application {
 		
 	});
 	
-	Scene scene = new Scene(grid, 300, 500);
+	Scene scene = new Scene(grid, 380, 550 );
 	window.setScene(scene);
 	window.setTitle("HelloWorld Register");
 	window.show();
@@ -275,7 +275,7 @@ public class NewUserSignUp extends Application {
 	SSNInput.clear();
 	streetAddressInput.clear();
 	cityInput.clear();
-	stateInput.clear();
+	//stateInput.clear();
 	zipCodeInput.clear();
 	phoneNumberInput.clear();
 	
@@ -285,9 +285,6 @@ public class NewUserSignUp extends Application {
 	securityQuestionInput.clear();
 	securityQuestionAnswerInput.clear();
 	}
-	
-	
-	
 	
 	
 	//ignore, should i use this method or would it make it more confusing?

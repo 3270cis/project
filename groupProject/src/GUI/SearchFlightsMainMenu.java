@@ -121,8 +121,6 @@ public class SearchFlightsMainMenu extends Application {
 		grid.add(searchFlightsButton, 1, 6);
 		grid.add(departDate, 1, 2);
 		
-	
-		
 		cBoxTo.setOnAction(event -> {
 			
 			Background back;

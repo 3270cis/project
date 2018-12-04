@@ -47,6 +47,7 @@ public class Login extends Application{
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.TOP_CENTER);
 		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.setVgap(5);
 		
 		Label helloWorldLabel = new Label("HelloWorld Airlines");
 		helloWorldLabel.setStyle("-fx-font-size: 28pt");
@@ -74,6 +75,9 @@ public class Login extends Application{
 		
 		Button forgotPasswordButton = new Button("Forgot Password");
 		GridPane.setConstraints(forgotPasswordButton, 4, 4);
+		
+		Button adminLoginInButton = new Button("Admin Login");
+		GridPane.setConstraints(adminLoginInButton, 0, 7);
 		
 		//"register" button should bring up the NewUserSignUp window
 		newUserButton.setOnAction(event -> {
@@ -119,8 +123,24 @@ public class Login extends Application{
 			
 		});
 		
+		adminLoginInButton.setOnAction(event -> {
+			
+			ValueObject valObj = new ValueObject(); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+			if(valObj.isCorrectAdminCredentials(usernameInput.getText(), passwordInput.getText())) {
+			
+				AdminUser admin = new AdminUser();
+				try {
+					admin.start(window);
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+			
+		});
+		
 		grid.getChildren().addAll(helloWorldLabel,usernameLabel, usernameInput, passwordLabel, passwordInput, 
-									loginButton, newUserButton, forgotPasswordButton);
+									loginButton, newUserButton, forgotPasswordButton,adminLoginInButton);
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

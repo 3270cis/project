@@ -58,12 +58,14 @@ public class DatabaseObject {
 					
 					//if it equals then the username is already taken
 					isUsernameAlreadyTaken = true;
+					connect.close();
 					break;
 				}
 				
 				else {
 					//if it's not taken, then the username is available
 					isUsernameAlreadyTaken = false;
+					connect.close();
 				}
 			}
 		}
@@ -125,7 +127,7 @@ public class DatabaseObject {
 			Class.forName("org.postgresql.Driver");
 			//connection to database
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
-			System.out.println("Database Connected :) 3");
+			System.out.println("Database Connected :) 2");
 			
 			String quertyString = "SELECT username, upassword FROM customerairline";	
 			//create statement
@@ -139,6 +141,7 @@ public class DatabaseObject {
 				if(username.equals(usernameInDB) && password.equals(upasswordInDB)) {
 					userAndPassMatch = true;
 					System.out.println("sucessful login");
+					connect.close();
 					break;
 				}
 			}
@@ -149,6 +152,30 @@ public class DatabaseObject {
 			}
 		
 		return userAndPassMatch;
+		
+	}
+	
+	
+	public boolean isCorrectAdminCredentialsInDB(String username, String password) {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			//connection to database
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 3");
+			
+			String quertyString = "SELECT securityquestion, username FROM passwordretrieval";//HAVE TO FIGURE OUT THE ADMIN CREDENTIALS!
+			//create statement
+			PreparedStatement preStatement = connect.prepareStatement(quertyString);
+			ResultSet rSet = preStatement.executeQuery();
+			
+		} 
+			
+		catch (Exception exception) {	
+			exception.printStackTrace();
+		}
+		
+
 		
 	}
 
@@ -162,7 +189,7 @@ public class DatabaseObject {
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 4");
 			
-			String quertyString = "SELECT username, securityquestion FROM customerairline";	
+			String quertyString = "SELECT securityquestion, username FROM passwordretrieval";	
 			//create statement
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
 			ResultSet rSet = preStatement.executeQuery();
@@ -173,6 +200,7 @@ public class DatabaseObject {
 				
 				if(username.equals(usernameInDB)) {
 					secQuestion = rSet.getString("securityquestion");
+					connect.close();
 					break;
 				}
 				
@@ -197,7 +225,7 @@ public class DatabaseObject {
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 5");
 			
-			String quertyString = "SELECT securityquestion, securityquestionanswer FROM customerairline";	
+			String quertyString = "SELECT securityquestion, username FROM passwordretrieval";	
 			//create statement
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
 			ResultSet rSet = preStatement.executeQuery();
@@ -205,10 +233,11 @@ public class DatabaseObject {
 			
 			while(rSet.next()) {
 				
-				String secAnswerInDB = rSet.getString("securityquestionanswer");
+				String secAnswerInDB = rSet.getString("securityanswer");
 				
 				if(answer.equalsIgnoreCase(secAnswerInDB)) {
 					answerMatch =  true;
+					connect.close();
 				}
 			}
 		}	
@@ -230,7 +259,7 @@ public class DatabaseObject {
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 6");
 			
-			String quertyString = "SELECT username, upassword FROM customerairline";	
+			String quertyString = "SELECT username, upassword FROM users";	
 			//create statement
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
 			ResultSet rSet = preStatement.executeQuery();
@@ -241,11 +270,13 @@ public class DatabaseObject {
 			
 			if(username.equals(usernameInDB)) {
 				upassword = upasswordInDB;
+				connect.close();
 				break;
 			}
 			
 			}
 		}	
+		
 		
 		catch (Exception exception) {	
 				exception.printStackTrace();
@@ -264,11 +295,14 @@ public class DatabaseObject {
 			System.out.println("Database Connected :) 7");
 			
 			//well....does that mean i have to create 3 different queries? 
-			String quertyString1 = "INSERT INTO users (customerid, firstname, lastname, ssn, phonenumber, username, upassword, email) "
-									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 	
+			String quertyString1 = "INSERT INTO users (userid, firstname, lastname, ssn, phonenumber, username, upassword, email) "
+									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 
+			
+			int temp = 1050; //DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11!!
+			
 			//create statement
 			PreparedStatement preStatement1 = connect1.prepareStatement(quertyString1);
-			preStatement1.setInt(1, newCustomer.getUserID());
+			preStatement1.setInt(1, temp);
 			preStatement1.setString(2, newCustomer.getFirstName() );
 			preStatement1.setString(3, newCustomer.getLastName());
 			preStatement1.setString(4, newCustomer.getSSN());
@@ -283,28 +317,30 @@ public class DatabaseObject {
 			Connection connect2 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 8");
 			
-			String quertyString2 = "INSERT INTO address (streetaddress, city, state, zipcode, customerID)"
-									+ " VALUES (?, ?, ?, ?, ?)"; 
+			String quertyString2 = "INSERT INTO address (streetaddress, city, state, zipcode, userid, country)"
+									+ " VALUES (?, ?, ?, ?, ?, ?)"; 
 			
 			PreparedStatement preStatement2 = connect2.prepareStatement(quertyString2);
 			preStatement2.setString(1, newAddress.getStreetAddress());
 			preStatement2.setString(2, newAddress.getCity());
 			preStatement2.setString(3, newAddress.getState());
 			preStatement2.setString(4, newAddress.getZipCode());
-			preStatement2.setInt(5, newCustomer.getUserID());
-			//need to add country
+			preStatement2.setInt(5, temp);
+			preStatement2.setString(6, newAddress.getCountry());
 			preStatement2.executeUpdate();
 			connect2.close();
 			
 			Connection connect3 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 9");
 			
-			String quertyString3 = "INSERT INTO passwordRetrieval (securityquestion, securityquestionanswer)"
-									+ " VALUES (?, ?)"; 
+			String quertyString3 = "INSERT INTO passwordretrieval (userid, securityquestion, securityanswer, username)"
+									+ " VALUES (?, ?, ?, ?)"; 
 			
 			PreparedStatement preStatement3 = connect3.prepareStatement(quertyString3);
-			preStatement3.setString(1, passRetr.getSecurityQuestion());
-			preStatement3.setString(2, passRetr.getSecurityQuestionAnswer());
+			preStatement3.setInt(1, temp);
+			preStatement3.setString(2, passRetr.getSecurityQuestion());
+			preStatement3.setString(3, passRetr.getSecurityQuestionAnswer());
+			preStatement3.setString(4, newCustomer.getUsername() );
 			
 			preStatement3.executeUpdate();
 			connect3.close();

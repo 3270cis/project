@@ -38,6 +38,9 @@ public class ValueObject {
 			  String securityQuestionString,String securityQuestionAnswerString ) {
 		
 		User newCustomer = new Customer(firstNameString, lastNameString);
+		newCustomer.setFirstName(firstNameString);
+		newCustomer.setLastName(lastNameString);
+		newCustomer.setUserID(newCustomer.getUserID());
 		newCustomer.setSSN(SSNString);
 		newCustomer.setPhoneNumber(phoneNumberString);
 		newCustomer.setEmail(emailString);
@@ -47,12 +50,18 @@ public class ValueObject {
 		Address newAddress = new Address(streetAddressString, cityString, stateString,
 										zipCodeString, countryString);
 		
+		newAddress.setStreetAddress(streetAddressString);
+		newAddress.setCity(cityString);
+		newAddress.setState(stateString);
+		newAddress.setZipCode(zipCodeString);
+		newAddress.setCountry(countryString);
+		
 		PasswordRetreival passRetr = new PasswordRetreival();
 		passRetr.setSecurityQuestion(securityQuestionString);
 		passRetr.setSecurityQuestionAnswer(securityQuestionAnswerString);
 		
-		DatabaseObject dataObj = new DatabaseObject();
 		
+		DatabaseObject dataObj = new DatabaseObject();
 		dataObj.createNewCustomerInDB(newCustomer, newAddress, passRetr);
 		
 		
@@ -128,6 +137,24 @@ public class ValueObject {
 		
 	}
 	
+	public boolean isCorrectAdminCredentials(String username, String password) {
+		
+		DatabaseObject dataObj = new DatabaseObject();
+			
+		if(!username.isEmpty() && !password.isEmpty()) {
+			
+			if(dataObj.isCorrectAdminCredentialsInDB(username, password)) { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				return true;
+			}
+		
+			else {
+				return false;
+			}
+		}
+		
+		return false;
+	}
+	
 	public boolean checkAnswer(String answer) {
 		
 		DatabaseObject dataObj = new DatabaseObject();
@@ -170,7 +197,6 @@ public class ValueObject {
 				return false;
 			}	
 		}
-		
 		else {
 			return false;
 		}
@@ -185,7 +211,6 @@ public class ValueObject {
 		
 		Date date1;
 		Date date2;
-		
 		try {
 			
 			date1 = new Date(flightDate);
@@ -202,8 +227,7 @@ public class ValueObject {
 			if (from.equals(to)) {
 				return false;
 			} 
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("check customer input method");
@@ -213,6 +237,40 @@ public class ValueObject {
 	}
 	
 	
+	public boolean isValidPhoneNumber(String phoneNumber) {
+		
+		boolean isValid = false;
+		
+		ArrayList<String> array = new ArrayList<>();
+		array.add(phoneNumber);
+		
+		   /* Following are valid phone number examples */             
+        //"(111)1234567", "1111111111", "333-222-0000", "(444)454-8231",
+		
+		String pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";  
+		
+		for (String input : array) {
+			
+			if (input.matches(pattern)) {
+				System.out.println("1");
+				isValid = true;
+			}
+			else {
+				System.out.println("2");
+				isValid = false;
+			}
+		}
+		System.out.println("3");
+		return isValid;
+	
+	}
+	
+	/*public boolean isValidSocialSecurity(String phoneNumber) {
+		
+		
+		
+		
+	}*/
 		
 		
 	

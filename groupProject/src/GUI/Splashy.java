@@ -29,7 +29,7 @@ public void start(Stage stage) throws Exception {
 
 	
 	StackPane pane=new StackPane();
-	Scene scene = new Scene(pane,700, 350);
+	Scene scene = new Scene(pane,700, 380);
 
 	ImageView iv=new ImageView();
 	iv.setImage(image);
