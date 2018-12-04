@@ -270,29 +270,75 @@ public class ValueObject {
 	public boolean isCorrectInputForPasswordRetrieval(String username, String secQuestion, String secAnswer) {
 		
 		DatabaseObject dataObj = new DatabaseObject();
-		
-	
+
 			if(dataObj.doesUsernameQuestionAndAnswerMatch(username, secQuestion, secAnswer)) {
-				
-				return true;
-				
+				return true;	
 			}
 			
 			else {
 			
-			return false;
-			
+				return false;
+				
 			}
-		
-	
 	}
 	
-	/*public boolean isValidSocialSecurity(String phoneNumber) {
+	
+	
+	public boolean isValidSocialSecurity(String ssn) {
+		
+		
+		boolean isValid = false;
+		
+		ArrayList<String> array = new ArrayList<>();
+		array.add(ssn);
+		
+		   /* Following are valid social security number examples */             
+        //"(111)1234567", "1111111111", "333-222-0000", "(444)454-8231",
+		
+		String pattern = "\\d{9}|\\d{3}\\-\\d{2}\\-\\d{4}";
+		
+		for (String input : array) {
+			
+			if (input.matches(pattern)) {
+				System.out.println("1");
+				isValid = true;
+			}
+			else {
+				System.out.println("2");
+				isValid = false;
+			}
+		}
+		System.out.println("3");
+		return isValid;
 		
 		
 		
+	}
+
+	public boolean isEmailValid(String email) {
 		
-	}*/
+	boolean isValid = false;
+		
+		ArrayList<String> array = new ArrayList<>();
+		array.add(email);
+	
+		
+		String pattern = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+	
+		for (String input : array) {
+			
+			if (input.matches(pattern)) {
+				System.out.println("1");
+				isValid = true;
+			}
+			else {
+				System.out.println("2");
+				isValid = false;
+			}
+		}
+		System.out.println("3");
+		return isValid;
+	}
 		
 		
 	

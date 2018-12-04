@@ -9,9 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class AdminCustomerView extends Application {
+public class AdminCustomerReservationView extends Application {
 
-//TABLE VIEW OF ALL FLIGHTS
+	//TABLE VIEW OF ALL FLIGHTS
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -41,7 +41,7 @@ public class AdminCustomerView extends Application {
 		
 		logoutButton.setOnAction(event -> {
 			
-			Login log = new Login();
+			Login_1 log = new Login_1();
 			
 			try {
 				log.start(window);

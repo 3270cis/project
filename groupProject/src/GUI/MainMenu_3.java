@@ -9,7 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class MainMenu extends Application {
+public class MainMenu_3 extends Application {
+	
+	String tempUser;
+	
+	MainMenu_3(String tempUser){
+		
+		this.tempUser = tempUser;
+	}
 	
 	Stage window;
 	Button searchForFlightsButton;
@@ -33,7 +40,7 @@ public class MainMenu extends Application {
 		window = primaryStage;
 		
 		searchForFlightsButton = new Button("Search for Flights");
-		myReservationsButton = new Button("My Reservatiions");
+		myReservationsButton = new Button("My Reservations");
 		logoutButton = new Button("Logout");
 		
 		helloWorldAirline = new Label("HelloWorld Airlines Main Menu");
@@ -50,7 +57,7 @@ public class MainMenu extends Application {
 		
 		searchForFlightsButton.setOnAction(event -> {
 			
-			SearchFlightsMainMenu bkmm = new SearchFlightsMainMenu();
+			SearchAndBookFlight_4 bkmm = new SearchAndBookFlight_4(tempUser);
 			try {
 				bkmm.start(window);
 			} catch (Exception e) {
@@ -62,7 +69,7 @@ public class MainMenu extends Application {
 		
 		myReservationsButton.setOnAction(event -> {
 			
-			FlightReservations fr = new FlightReservations();
+			MyAccount_5 fr = new MyAccount_5(tempUser);
 			
 			try {
 				fr.start(window);
@@ -75,7 +82,7 @@ public class MainMenu extends Application {
 		
 		logoutButton.setOnAction(event -> {
 			
-			Login log = new Login();
+			Login_1 log = new Login_1();
 			
 			try {
 				log.start(window);

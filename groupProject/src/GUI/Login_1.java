@@ -23,7 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class Login extends Application{
+public class Login_1 extends Application{
 	
 	Stage window;
 	/*Scene loginPage;
@@ -79,9 +79,9 @@ public class Login extends Application{
 		Button adminLoginInButton = new Button("Admin Login");
 		GridPane.setConstraints(adminLoginInButton, 0, 7);
 		
-		//"register" button should bring up the NewUserSignUp window
+		//"register" button should bring up the Register window
 		newUserButton.setOnAction(event -> {
-			NewUserSignUp signUp = new NewUserSignUp();
+			Register_2 signUp = new Register_2();
 			try {
 				signUp.start(window);
 			} catch (Exception e) {
@@ -95,9 +95,10 @@ public class Login extends Application{
 			
 			if (valObj.checkLoginCredentials(usernameInput.getText(), passwordInput.getText())) {
 				
-				SearchFlightsMainMenu main = new SearchFlightsMainMenu();
+				MainMenu_3 main = new MainMenu_3(usernameInput.getText());
 				
 				try {
+
 					main.start(window);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -71,10 +71,10 @@ public class ForgotPasswordMenu extends Application {
 		grid.add(usernameLabel, 0, 1);
 		grid.add(usernameInput, 0, 2);
 		grid.add(secQuestionLabel, 0, 3);
-		grid.add(backToLoginButton, 0, 5);
-		grid.add(submitButton, 1, 5);
 		grid.add(listOfSecQuestion, 0, 4);
 		grid.add(secQuestionAnswerInput, 0, 5);
+		grid.add(submitButton, 0, 6);
+		grid.add(backToLoginButton, 0, 8);
 		
 		submitButton.setOnAction(event -> {
 			
@@ -99,16 +99,12 @@ public class ForgotPasswordMenu extends Application {
 				aBox2.displayMessage("Check your inputs!");
 				
 			}
-				
-				
-				
-			
-			
+
 		});
 		
 		
 		backToLoginButton.setOnAction(event -> {
-			Login login = new Login();
+			Login_1 login = new Login_1();
 			try {
 				login.start(window);
 			} catch (Exception e) {
@@ -116,7 +112,6 @@ public class ForgotPasswordMenu extends Application {
 			}
 		});
 		
-		/*grid.getChildren().addAll(label, usernameLabel, usernameInput, submitButton);*/
 		
 		Scene scene = new Scene(grid, 700, 300);
 		window.setScene(scene);

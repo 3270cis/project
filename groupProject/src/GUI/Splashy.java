@@ -54,7 +54,7 @@ public void start(Stage stage) throws Exception {
 	
 	
 	fadeOut.setOnFinished(event -> {
-		Login log = new Login();
+		Login_1 log = new Login_1();
 		try {
 			log.start(stage);
 		} catch (Exception e) {

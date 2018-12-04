@@ -17,7 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
-public class NewUserSignUp extends Application {
+public class Register_2 extends Application {
 	
 	Stage window;
 	
@@ -139,6 +139,7 @@ public class NewUserSignUp extends Application {
 	    							"IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", 
 	    							"ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", 
 	    							"TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");
+	 
 	 listOfSecQuestion = new ComboBox<>();
 	 listOfSecQuestion.getItems().addAll("What is your favorite class?", "What is your favorite food?", "What city were you born?");
 	
@@ -195,65 +196,40 @@ public class NewUserSignUp extends Application {
 		//checks zipcode...maybe i need a method that passes and checks all the inputs at the same time -__- , why didn't i do that earlier? fail
 		//or maybe just past in some of the items at a time, have methods for checking strings and not string inputs
 		//check fields inputs to make sure they're not left blank
-		if(valObj.isValidZipCode(zipCodeInput.getText()) || valObj.isValidPhoneNumber(phoneNumberInput.getText()) ) {
+		if(valObj.isValidZipCode(zipCodeInput.getText()) && valObj.isValidPhoneNumber(phoneNumberInput.getText()) 
+				&& valObj.isValidSocialSecurity(SSNInput.getText()) && valObj.isEmailValid(emailInput.getText())) {
 		
 			if (valObj.doesUsernameExist((usernameInput.getText()))) {
 			
 				aBox1 = new AlertBox();
 				aBox1.displayMessage(usernameInput.getText() + " username is taken!");
-				
 			}
-		
+
 			//create the new user customer
 			else {
-				//this code was making the user inputs into strings and passing all the strings into valueobject.
-				/*String firstNameString = firstNameInput.getText();
-				String lastNameString = lastNameInput.getText();
-				String SSNString = SSNInput.getText();
-				String streetAddressString = streetAddressInput.getText();
-				String cityString = cityInput.getText();
-				String stateString = ( ((TextField)listOfState.getEditor()).getText() ); //dropdox box to string
-				String zipCodeString = zipCodeInput.getText();
-				String countryString = countryInput.getText();
-				String phoneNumberString = phoneNumberInput.getText();
-				
-				String usernameString = usernameInput.getText();
-				String passwordString = passwordInput.getText();
-				String emailString = emailInput.getText();
-				String securityQuestionString = securityQuestionInput.getText();
-				String securityQuestionAnswerString = securityQuestionAnswerInput.getText();*/
-				
-				/*valObj.createNewUser(firstNameString, lastNameString, SSNString, streetAddressString, cityString, stateString,
-										zipCodeString,countryString, phoneNumberString, usernameString, passwordString,
-										emailString, securityQuestionString, securityQuestionAnswerString);*/
-				
-				
-				
+	
 				valObj.createNewUser(firstNameInput.getText(), lastNameInput.getText(), SSNInput.getText(), streetAddressInput.getText(), cityInput.getText(),  
 									listOfState.getValue(), zipCodeInput.getText(), countryInput.getText(), phoneNumberInput.getText(),
 									usernameInput.getText(), passwordInput.getText(), emailInput.getText(), 
 									listOfSecQuestion.getValue(), securityQuestionAnswerInput.getText());
+	
 				
-				
-				/*valObj.createNewUser(customerArray, addressArray, passwordRereivalArray);*/
-				
-				/*aBox2 = new AlertBox();
-				aBox2.displayMessage("Account Created!");*/
-				
+				aBox2 = new AlertBox();
+				aBox2.displayMessage("Account Created!");			
 				clearTextFields();
 			}
 		}
 		
 		else {
 			aBox3 = new AlertBox();
-			aBox3.displayMessage("Please check number format in zip code or phone number");
+			aBox3.displayMessage("Please check your inputs!");
 		}
 		
 	});
 	
 	
 	backToLoginButton.setOnAction(event -> {
-		Login log = new Login();
+		Login_1 log = new Login_1();
 		try {
 			log.start(window);
 		} catch (Exception e) {
@@ -281,7 +257,7 @@ public class NewUserSignUp extends Application {
 	//stateInput.clear();
 	zipCodeInput.clear();
 	phoneNumberInput.clear();
-	
+	countryInput.clear();
 	usernameInput.clear();
 	passwordInput.clear();
 	emailInput.clear();

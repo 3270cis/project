@@ -5,57 +5,54 @@ import java.util.Date;
 
 public class Reservation {
 	
-	private int reservationNo;
-	private LocalDate dateCreated;
-	FlightDetail flightInfo;
+	private String departureDate;
+	private String destination;
+	private String departureCity;
+	private String username;
 	
-	public Reservation(int reservationNo) {
-	
-		this.reservationNo = reservationNo;
-		this.dateCreated =  LocalDate.now();  
+	public Reservation() {
+		
+		 departureDate ="";
+		destination ="";
+		departureCity ="";
+		 username="";
 		
 	}
-	
-	
-	public Reservation(int reservationNo, FlightDetail flightInfo ) {
+
+	public Reservation(String departureDate, String destination, String departureCity, String username) {
 		
-		this.reservationNo = reservationNo;
-		this.flightInfo = flightInfo;
+		this.departureDate = departureDate;
+		this.destination = destination;
+		this.departureCity = departureCity;
+		this.username = username;
 	}
-
-
-	public int getReservationNo() {
-		return reservationNo;
+	public String getDepartureDate() {
+		return departureDate;
 	}
-
-
-	public void setReservationNo(int reservationNo) {
-		this.reservationNo = reservationNo;
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
 	}
-
-
-	public LocalDate getDateCreated() {
-		return dateCreated;
+	public String getDestination() {
+		return destination;
 	}
-
-
-	public void setDateCreated(LocalDate dateCreated) {
-		this.dateCreated = dateCreated;
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
-
-
-	public FlightDetail getFlightInfo() {
-		return flightInfo;
+	public String getDepartureCity() {
+		return departureCity;
 	}
-
-
-	public void setFlightInfo(FlightDetail flightInfo) {
-		this.flightInfo = flightInfo;
+	public void setDepartureCity(String departureCity) {
+		this.departureCity = departureCity;
 	}
-
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
 	
 	
 	
-
+	
 }

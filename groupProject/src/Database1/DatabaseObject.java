@@ -10,10 +10,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Backend.Address;
 import Backend.Customer;
 import Backend.PasswordRetreival;
+import Backend.Reservation;
 import Backend.User;
 
 public class DatabaseObject {
@@ -309,21 +311,20 @@ public class DatabaseObject {
 			System.out.println("Database Connected :) 7");
 			
 			//well....does that mean i have to create 3 different queries? 
-			String quertyString1 = "INSERT INTO users (userid, firstname, lastname, ssn, phonenumber, username, upassword, email) "
-									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 
+			String quertyString1 = "INSERT INTO users (firstname, lastname, ssn, phonenumber, username, upassword, email) "
+									+ " VALUES (?, ?, ?, ?, ?, ?, ?)"; 
 			
 			int temp = 1070; //DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11!!
 			
 			//create statement
 			PreparedStatement preStatement1 = connect1.prepareStatement(quertyString1);
-			preStatement1.setInt(1, temp);
-			preStatement1.setString(2, newCustomer.getFirstName() );
-			preStatement1.setString(3, newCustomer.getLastName());
-			preStatement1.setString(4, newCustomer.getSSN());
-			preStatement1.setString(5, newCustomer.getPhoneNumber());
-			preStatement1.setString(6, newCustomer.getUsername());
-			preStatement1.setString(7, newCustomer.getPassword());
-			preStatement1.setString(8, newCustomer.getEmail());
+			preStatement1.setString(1, newCustomer.getFirstName() );
+			preStatement1.setString(2, newCustomer.getLastName());
+			preStatement1.setString(3, newCustomer.getSSN());
+			preStatement1.setString(4, newCustomer.getPhoneNumber());
+			preStatement1.setString(5, newCustomer.getUsername());
+			preStatement1.setString(6, newCustomer.getPassword());
+			preStatement1.setString(7, newCustomer.getEmail());
 			//execute SQL query
 			preStatement1.executeUpdate();
 			connect1.close();
@@ -331,7 +332,7 @@ public class DatabaseObject {
 			Connection connect2 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 8");
 			
-			String quertyString2 = "INSERT INTO address (streetaddress, city, state, zipcode, userid, country)"
+			String quertyString2 = "INSERT INTO address (streetaddress, city, state, zipcode, username, country)"
 									+ " VALUES (?, ?, ?, ?, ?, ?)"; 
 			
 			PreparedStatement preStatement2 = connect2.prepareStatement(quertyString2);
@@ -339,7 +340,7 @@ public class DatabaseObject {
 			preStatement2.setString(2, newAddress.getCity());
 			preStatement2.setString(3, newAddress.getState());
 			preStatement2.setString(4, newAddress.getZipCode());
-			preStatement2.setInt(5, temp);
+			preStatement2.setString(5, newCustomer.getUsername());
 			preStatement2.setString(6, newAddress.getCountry());
 			preStatement2.executeUpdate();
 			connect2.close();
@@ -347,14 +348,13 @@ public class DatabaseObject {
 			Connection connect3 = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 9");
 			
-			String quertyString3 = "INSERT INTO passwordretrieval (userid, securityquestion, securityanswer, username)"
-									+ " VALUES (?, ?, ?, ?)"; 
+			String quertyString3 = "INSERT INTO passwordretrieval (securityquestion, securityanswer, username)"
+									+ " VALUES (?, ?, ?)"; 
 			
 			PreparedStatement preStatement3 = connect3.prepareStatement(quertyString3);
-			preStatement3.setInt(1, temp);
-			preStatement3.setString(2, passRetr.getSecurityQuestion());
-			preStatement3.setString(3, passRetr.getSecurityQuestionAnswer());
-			preStatement3.setString(4, newCustomer.getUsername() );
+			preStatement3.setString(1, passRetr.getSecurityQuestion());
+			preStatement3.setString(2, passRetr.getSecurityQuestionAnswer());
+			preStatement3.setString(3, newCustomer.getUsername() );
 			
 			preStatement3.executeUpdate();
 			connect3.close();
@@ -369,7 +369,7 @@ public class DatabaseObject {
 		
 	}
 
-	public void searchTheDBForFlight(String departureCity, String destination, String date) {
+	public void bookTheFlight(String departureCity, String destination, String date, String tempUser) {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -377,14 +377,17 @@ public class DatabaseObject {
 			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
 			System.out.println("Database Connected :) 10");
 			
-			String quertyString = "SELECT destination, departurecity FROM flightdetails";	 //WE HAVE TO COME UP WITH CERTAIN DATES IN THE DB
+			String quertyString = "INSERT INTO reservation (departuredate, destination, departurecity, username)" 
+									+ "VALUES (?, ?, ?, ?)";//WE HAVE TO COME UP WITH CERTAIN DATES IN THE DB
 			//create statement
+			
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
-			ResultSet rSet = preStatement.executeQuery();
-			
-			while(rSet.next()) {
-			
-			}
+			preStatement.setString(1, date);
+			preStatement.setString(2, destination);
+			preStatement.setString(3, departureCity);
+			preStatement.setString(4, tempUser);
+			preStatement.executeUpdate();
+			connect.close();
 		}	
 		
 		catch (Exception exception) {	
@@ -437,11 +440,85 @@ public class DatabaseObject {
 		
 		return doesItAllMatch;
 	}
+
+	public boolean isAlreadyBookForTheUsername(String departurecity, String destination, String date,  String tempUser) {
+		
+	try {
+		Class.forName("org.postgresql.Driver");
+		//connection to database
+		Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+		System.out.println("Database Connected :) 12");
+		
+		String quertyString = "SELECT departuredate, destination, departurecity, username FROM reservation";
+		//create statement
+		PreparedStatement preStatement = connect.prepareStatement(quertyString);
+		ResultSet rSet = preStatement.executeQuery();
+		
+			while(rSet.next()) {
+			
+			String departureDateInDB = rSet.getString("departuredate");
+			String destinationInDB = rSet.getString("destination");
+			String departurecityInDB = rSet.getString("departurecity");
+			String usernameInDB = rSet.getString("username");
+			
+				if(departureDateInDB.equalsIgnoreCase(date) && destinationInDB.equalsIgnoreCase(destination)
+						&& departurecityInDB.equalsIgnoreCase(departurecity) && usernameInDB.equalsIgnoreCase(tempUser)) {
+						
+							connect.close();
+							return true;
+				}
+			}
+			
+	}
+			catch(Exception ex) {
+				
+				ex.printStackTrace();
+				
+			}
+	return false;
 	
+	}
+
+	public ArrayList<Reservation> getReservationsFromDB(String tempUser) {
+		
+		ArrayList<Reservation> reservationsFromDB = new ArrayList<>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			//connection to database
+			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
+			System.out.println("Database Connected :) 12");
+			
+			String quertyString = "SELECT departuredate, destination, departurecity, username FROM reservation";	
+			//create statement
+			PreparedStatement preStatement = connect.prepareStatement(quertyString);
+			ResultSet rSet = preStatement.executeQuery();
+			while(rSet.next()) {
+				
+				String userNameFromDB = rSet.getString("username");
+				
+				if(userNameFromDB.equals(tempUser)) {
+				
+					Reservation res = new Reservation();
+					res.setDepartureDate((rSet.getString("departuredate")));
+					res.setDestination(rSet.getString("destination"));
+					res.setDepartureCity(rSet.getString("departurecity"));
+					reservationsFromDB.add(res);
+				}
+			}	
+			
+				return reservationsFromDB;
+
+		}
+			
+		catch (Exception exception) {	
+			exception.printStackTrace();
+		}		
+		
+		return null;
+	}
 	
 }
-	
-
 /*	public void createNewCustomerInDB(String firstNameString, String lastNameString, String SSNString, String streetAddressString, String cityString, String stateString,
 			String zipCodeString, String phoneNumberString, String usernameString, String passwordString, String emailString,String securityQuestionString,String securityQuestionAnswerString) {
 	
