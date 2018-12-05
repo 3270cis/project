@@ -21,7 +21,7 @@ public class ValueObject {
 		
 		DatabaseObject dataObj = new DatabaseObject();
 		
-			if (dataObj.doesUsernameExistInDB(username) == true) {
+			if (dataObj.doesUsernameExistInDB(username)) {
 				return true;
 			}
 			
@@ -67,66 +67,11 @@ public class ValueObject {
 		
 	}
 	
-	/*public void createNewUser(ArrayList<String> customerArray,
-							  ArrayList<String> addressArray,
-							  ArrayList<String> passwordRereivalArray) {
-		
-		User newCustomer = new Customer(customerArray.get(0), customerArray.get(1));
-		newCustomer.setSSN(customerArray.get(2));
-		newCustomer.setPhoneNumber(customerArray.get(3));
-		newCustomer.setEmail(customerArray.get(4));
-		newCustomer.setUsername(customerArray.get(5));
-		newCustomer.setPassword(customerArray.get(6));
-		
-		Address newAddress = new Address(addressArray.get(0), addressArray.get(1), addressArray.get(2),
-									  addressArray.get(3), addressArray.get(4));
-		
-		PasswordRetreival passRetr = new PasswordRetreival();
-		passRetr.setSecurityQuestion(passwordRereivalArray.get(0));
-		passRetr.setSecurityQuestionAnswer(passwordRereivalArray.get(1));
-		
-		DatabaseObject dataObj = new DatabaseObject();
-		
-		dataObj.createNewCustomerInDB(newCustomer, newAddress, passRetr);
-		
-		
-	}
-	*/
-	
-	
-	
-/*	public void createNewUser(String firstNameString, String lastNameString, String SSNString, 
-							  String streetAddressString, String cityString, String stateString,
-							  String zipCodeString, String countryString, String phoneNumberString,
-							  String usernameString, String passwordString, String emailString,
-							  String securityQuestionString,String securityQuestionAnswerString ) {*/
-		
-
-/*		//polymorphism!
-		User newCustomer = new Customer(firstNameString, lastNameString);
-		User newAdmin = new Admin("bob", "bobby");
-		
-		//explicit casting
-		Admin admin2 = (Admin) newAdmin;
-		admin2.updateFlight();
-		
-		//polymorphism
-		//newCustomer
-		
-		DatabaseObject dataObj = new DatabaseObject();*/
-		
-		//sooooo this method is not going to work cause we split the customer class
-		//dataObj.createNewCustomerInDB(newCustomer);
-		
-	
-
 	public boolean checkLoginCredentials(String username, String password) {
 		
 		DatabaseObject dataObj = new DatabaseObject();
-	
-		//the user inputs can not be left empty, use a method to check the strings
-		
-		if(dataObj.isCorrectLoginCredentials(username, password) == true) {
+			
+		if(dataObj.isCorrectLoginCredentials(username, password)) {
 			
 			return true;
 		}
@@ -141,6 +86,7 @@ public class ValueObject {
 		
 		DatabaseObject dataObj = new DatabaseObject();
 			
+		//the field cannot be empty
 		if(!username.isEmpty() && !password.isEmpty()) {
 			
 			if(dataObj.isCorrectAdminCredentialsInDB(username, password)){
@@ -157,6 +103,7 @@ public class ValueObject {
 		return false;
 	}
 	
+/*	
 	public boolean checkAnswer(String answer) {
 		
 		DatabaseObject dataObj = new DatabaseObject();
@@ -172,9 +119,9 @@ public class ValueObject {
 			return false;
 		}
 		
-	}
+	}*/
 	
-	public boolean isNumber(String num) {
+/*	public boolean isNumber(String num) {
 		
 		try {
 			Integer.parseInt(num);
@@ -184,7 +131,7 @@ public class ValueObject {
 			ex.printStackTrace();
 			return false;
 		}	
-	}
+	}*/
 	
 	public boolean isValidZipCode(String zipCodeInput) {
 		
@@ -209,6 +156,8 @@ public class ValueObject {
 /*	A program element annotated @Deprecated is one that programmers are discouraged from using,
 	typically because it is dangerous, or because a better alternative exists. 
 	Compilers warn when a deprecated program element is used or overridden in non-deprecated code.*/
+	
+	//the customer can't choose today's date and before for their flight
 	public boolean didCustomerInputFromToAndDateCorrect(String from, String to, String flightDate) {
 		
 		Date date1;
@@ -222,7 +171,7 @@ public class ValueObject {
 			if(date1.before(date2) || date1.equals(date2)) {
 				
 				System.out.println("flight date: " + date1);
-				System.out.println("today da0te: " +date2);
+				System.out.println("today date: " +date2);
 				return false;
 			}	
 				//if both departure city and destination match, return false
@@ -249,8 +198,10 @@ public class ValueObject {
 		   /* Following are valid phone number examples */             
         //"(111)1234567", "1111111111", "333-222-0000", "(444)454-8231",
 		
+		// 10 digits, 3 digits times 2 with 2 dahes
 		String pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";  
 		
+		//for each input in the array
 		for (String input : array) {
 			
 			if (input.matches(pattern)) {
@@ -292,9 +243,6 @@ public class ValueObject {
 		ArrayList<String> array = new ArrayList<>();
 		array.add(ssn);
 		
-		   /* Following are valid social security number examples */             
-        //"(111)1234567", "1111111111", "333-222-0000", "(444)454-8231",
-		
 		String pattern = "\\d{9}|\\d{3}\\-\\d{2}\\-\\d{4}";
 		
 		for (String input : array) {
@@ -321,8 +269,7 @@ public class ValueObject {
 		
 		ArrayList<String> array = new ArrayList<>();
 		array.add(email);
-	
-		
+
 		String pattern = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
 	
 		for (String input : array) {
@@ -344,21 +291,3 @@ public class ValueObject {
 	
 
 }
-
-
-
-//checks string
-/*private static boolean charsOK(String s) { 
-    String charactersIdontWant = "^àáâãäåçèéêëìíîïðòóôõöùúûüýÿ!&{}¿?.<>~\\()";
-    for (char c : charactersIdontWant.toCharArray()) {
-        if (s.indexOf(c) != -1) return false;
-    }
-    return true;
-
-}
-public static void main(String[] args) {
-    String myString = "thisMayContïain/anything@";
-    String myString2 = "thisMayContain/anything@";
-    System.out.println(charsOK(myString));
-    System.out.println(charsOK(myString2));
-}*/

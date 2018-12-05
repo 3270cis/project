@@ -41,9 +41,8 @@ public class DatabaseObject {
 			System.out.println("Database Connected :) 1");
 			
 			String quertyString = "select * from users ";
-			String usernameColumnInDB = "username";
-			
-			//create statement
+
+			//prepare statement efficiently,prepared statement or parameterized statement is a feature used to execute the same or similar database statements repeatedly with high efficiency.
 			PreparedStatement preStatement = connect.prepareStatement(quertyString);
 			
 			//execute SQL query
@@ -53,7 +52,7 @@ public class DatabaseObject {
 			while (rSet.next()) {
 		
 				//its going to get the string from the 'username' column in the DB and assign it to usernameFromDB
-				String usernameFromDB = rSet.getString(usernameColumnInDB);
+				String usernameFromDB = rSet.getString("username");
 				
 				//checks if the username that was inputed into the method equals the username from the DB
 				if (username.equals(usernameFromDB)) {
@@ -80,47 +79,7 @@ public class DatabaseObject {
 		
 	}
 	
-	//the original method
-	/*public void createNewCustomerInDB(Customer newCustomer) {
-		
-		try {
-			Class.forName("org.postgresql.Driver");
-			//connection to database
-			Connection connect = DriverManager.getConnection(databaseURL, databaseUser, databasePass);
-			System.out.println("Database Connected :) 2");
-			
-			String quertyString = "INSERT INTO users (firstname, lastname, ssn, streetaddress, city, state, zipcode, phonenumber, "
-									+ "username, upassword, email, securityquestion, securityquestionanswer)"
-									+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  "; 	
-			//create statement
-			PreparedStatement preStatement = connect.prepareStatement(quertyString);
-			
-			preStatement.setString(1, newCustomer.getFirstName() );
-			preStatement.setString(2, newCustomer.getLastName());
-			preStatement.setString(3, newCustomer.getSSN());
-			preStatement.setString(4, newCustomer.getStreetAddress());
-			preStatement.setString(5, newCustomer.getCity());
-			preStatement.setString(6, newCustomer.getState());
-			preStatement.setString(7, newCustomer.getZipCode());
-			preStatement.setString(8, newCustomer.getPhoneNumber());
-			preStatement.setString(9, newCustomer.getUserName());
-			preStatement.setString(10, newCustomer.getPassword());
-			preStatement.setString(11, newCustomer.getEmail());
-			preStatement.setString(12, newCustomer.getSecurityQuestion());
-			preStatement.setString(13, newCustomer.getSecurityQuestionAnswer());
-			//execute SQL query
-			preStatement.executeUpdate();
-			
-			
-			System.out.println("congrats createNewCustomerInDB method");
-		}
-			catch (Exception exception) {	
-				exception.printStackTrace();
-			}
-		
-		
-	}*/
-
+	//when logining in
 	public boolean isCorrectLoginCredentials(String username, String password) {
 	
 		boolean userAndPassMatch = false;
@@ -194,8 +153,9 @@ public class DatabaseObject {
 		return userAndPassMatch;
 		
 	}
-
-	public String getSecurityQuestionDB(String username) {
+	
+	// not used
+	/*public String getSecurityQuestionDB(String username) {
 		
 		String secQuestion = null;
 		
@@ -229,7 +189,7 @@ public class DatabaseObject {
 		
 		return secQuestion;
 		
-	}
+	}*/
 
 	public boolean doesAnswerMatchInDB(String answer) {
 		
@@ -265,6 +225,7 @@ public class DatabaseObject {
 		return answerMatch;	
 	}
 	
+	//the password to the gui
 	public String getPasswordDB(String username) {
 		
 		String upassword = null;
@@ -313,8 +274,6 @@ public class DatabaseObject {
 			//well....does that mean i have to create 3 different queries? 
 			String quertyString1 = "INSERT INTO users (firstname, lastname, ssn, phonenumber, username, upassword, email) "
 									+ " VALUES (?, ?, ?, ?, ?, ?, ?)"; 
-			
-			int temp = 1070; //DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11!!
 			
 			//create statement
 			PreparedStatement preStatement1 = connect1.prepareStatement(quertyString1);
@@ -478,7 +437,7 @@ public class DatabaseObject {
 	return false;
 	
 	}
-
+	//problems
 	public ArrayList<Reservation> getReservationsFromDB(String tempUser) {
 		
 		ArrayList<Reservation> reservationsFromDB = new ArrayList<>();

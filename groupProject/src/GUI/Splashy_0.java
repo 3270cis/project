@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-public class Splashy extends Application {
+public class Splashy_0 extends Application {
 
 
 public static void main(String[] args) {

@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class ForgotPasswordMenu extends Application {
+public class ForgotPasswordMenu1_5 extends Application {
 	
 	Stage window;
 	String secQuestion = null;

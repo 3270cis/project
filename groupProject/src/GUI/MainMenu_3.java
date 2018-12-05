@@ -67,6 +67,7 @@ public class MainMenu_3 extends Application {
 			
 		});
 		
+		//having errors
 		myReservationsButton.setOnAction(event -> {
 			
 			MyAccount_5 fr = new MyAccount_5(tempUser);
@@ -105,10 +106,5 @@ public class MainMenu_3 extends Application {
 		
 	}
 	
-	
-	
-	//option to book flight
-	//option to look up my flight (my reservations)
-	//log 
 
 }

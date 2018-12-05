@@ -55,7 +55,7 @@ public class AdminUser extends Application {
 		
 		customerReservationsButton.setOnAction(event -> {
 			
-			AdminCustomerView adminView = new AdminCustomerView();
+			AdminCustomerReservationView adminView = new AdminCustomerReservationView();
 			
 			try {
 				adminView.start(window);

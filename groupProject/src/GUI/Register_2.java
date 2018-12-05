@@ -59,7 +59,7 @@ public class Register_2 extends Application {
 	Button createAcctButton;
 	Button backToLoginButton;
 	
-	ComboBox<String> listOfState;
+	ComboBox<String> listOfState; //dropdown choices
 	ComboBox<String> listOfSecQuestion;
 	
 	public static void main(String[] args) {
@@ -193,19 +193,17 @@ public class Register_2 extends Application {
 		AlertBox aBox2;
 		AlertBox aBox3;
 		
-		//checks zipcode...maybe i need a method that passes and checks all the inputs at the same time -__- , why didn't i do that earlier? fail
-		//or maybe just past in some of the items at a time, have methods for checking strings and not string inputs
 		//check fields inputs to make sure they're not left blank
 		if(valObj.isValidZipCode(zipCodeInput.getText()) && valObj.isValidPhoneNumber(phoneNumberInput.getText()) 
 				&& valObj.isValidSocialSecurity(SSNInput.getText()) && valObj.isEmailValid(emailInput.getText())) {
-		
+			//checks if user name already exists, if true, the username exists
 			if (valObj.doesUsernameExist((usernameInput.getText()))) {
 			
 				aBox1 = new AlertBox();
 				aBox1.displayMessage(usernameInput.getText() + " username is taken!");
 			}
 
-			//create the new user customer
+			//create the new user
 			else {
 	
 				valObj.createNewUser(firstNameInput.getText(), lastNameInput.getText(), SSNInput.getText(), streetAddressInput.getText(), cityInput.getText(),  
@@ -215,7 +213,9 @@ public class Register_2 extends Application {
 	
 				
 				aBox2 = new AlertBox();
-				aBox2.displayMessage("Account Created!");			
+				aBox2.displayMessage("Account Created!");	
+				
+				//clear the texts 
 				clearTextFields();
 			}
 		}
@@ -235,16 +235,13 @@ public class Register_2 extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	});
 	
 	Scene scene = new Scene(grid, 380, 550 );
 	window.setScene(scene);
 	window.setTitle("HelloWorld Register");
 	window.show();
-	
 	
 	}
 	
@@ -263,15 +260,6 @@ public class Register_2 extends Application {
 	emailInput.clear();
 	//securityQuestionInput.clear();
 	securityQuestionAnswerInput.clear();
-	}
-	
-	
-	//ignore, should i use this method or would it make it more confusing?
-	public String getsTheTextFieldAsAString(String s) {
-		
-		TextField test = new TextField(s);
-		
-		return test.getText();
 	}
 
 }

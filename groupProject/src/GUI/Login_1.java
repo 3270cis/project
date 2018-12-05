@@ -91,10 +91,12 @@ public class Login_1 extends Application{
 		
 		//login button should go through the username & pw checks and if it returns true, then open up the flight main menu
 		loginButton.setOnAction(event -> {
+			
 			ValueObject valObj = new ValueObject();
 			
 			if (valObj.checkLoginCredentials(usernameInput.getText(), passwordInput.getText())) {
 				
+				//going to send the username to the mainmenu as a temp user
 				MainMenu_3 main = new MainMenu_3(usernameInput.getText());
 				
 				try {
@@ -114,7 +116,7 @@ public class Login_1 extends Application{
 		});
 		
 		forgotPasswordButton.setOnAction(event -> {
-			ForgotPasswordMenu fpmenu = new ForgotPasswordMenu();
+			ForgotPasswordMenu1_5 fpmenu = new ForgotPasswordMenu1_5();
 
 			try {
 				fpmenu.start(window);
@@ -125,8 +127,6 @@ public class Login_1 extends Application{
 		});
 		
 		adminLoginInButton.setOnAction(event -> {
-			
-			
 			
 			ValueObject valObj = new ValueObject();
 			

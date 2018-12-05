@@ -112,6 +112,8 @@ public class SearchAndBookFlight_4 extends Application {
 		returnLabel = new Label("Return Date");
 		//numOfPassLabel = new Label("Number of passengers");
 		
+		//backgrounds
+		
 		Paris_IMG = new Image(Paris_URL);
 		ParisBackgroundImage = new BackgroundImage(Paris_IMG, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, 
 									BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, 
@@ -133,7 +135,7 @@ public class SearchAndBookFlight_4 extends Application {
 									BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, 
 																					false, false, true, false));
 		
-		 
+		//dropdown menus
 		cBoxFrom = new ComboBox<>();
 		cBoxFrom.getItems().addAll("Atlanta (ATL)");
 		
@@ -141,10 +143,8 @@ public class SearchAndBookFlight_4 extends Application {
 		cBoxTo.getItems().addAll("Paris(CDG)", "Kashmir(SXR)", "Tokyo(HND)", "Rome(FCO)", "Sydney(SYD)");
 		
 		departDate = new DatePicker();
-		
-		
-		
 		departDate.setPromptText("Date");
+		//not editable
 		departDate.setEditable(false);
 	
 			
@@ -188,18 +188,7 @@ public class SearchAndBookFlight_4 extends Application {
 									grid.setBackground(back);
 									break;
 			}
-			
-			/*departDate.setDayCellFactory(picker -> new DateCell() {
-				
-	            @Override
-	            public void updateItem(LocalDate date, boolean empty) {
-	                super.updateItem(date, empty);
-	                setDisable(empty || date.getDayOfWeek() == DayOfWeek.MONDAY && empty || date.getDayOfWeek() == DayOfWeek.TUESDAY);
-	            }
-	            
-	        });*/
-			
-			
+
 			
 		});
 		
@@ -211,19 +200,19 @@ public class SearchAndBookFlight_4 extends Application {
 			AlertBox aBox1;
 			AlertBox aBox2;
 			AlertBox aBox3;
-															//making sure from to and date is not empty
+															//making sure "from" "to" and "date" is not empty
 			if ( !(cBoxFrom.getValue().isEmpty()) && !(cBoxTo.getValue().isEmpty()) 
 					&& !(((TextField)departDate.getEditor()).getText().isEmpty()) &&
 																//getting the user's 'from', 'to', and 'date'
 					(valObj.didCustomerInputFromToAndDateCorrect(cBoxFrom.getValue(), cBoxTo.getValue(), 
 															((TextField)departDate.getEditor()).getText()))) {
-				
+																//datepicker type, casting it into a textfield type
 							
 						System.out.println("checked customer input, returned true");
 				
 							DatabaseObject dataObj = new DatabaseObject();
 				
-							//maybe !
+							//checking to see if its already booked for the user
 							if(dataObj.isAlreadyBookForTheUsername(cBoxFrom.getValue(), cBoxTo.getValue(), 
 									( (TextField)departDate.getEditor()).getText(), tempUser)) {
 				
@@ -232,7 +221,8 @@ public class SearchAndBookFlight_4 extends Application {
 							}
 				
 							else {
-					
+								
+								//book the flight
 								dataObj.bookTheFlight(cBoxFrom.getValue(), cBoxTo.getValue(), 
 										((TextField)departDate.getEditor()).getText(), tempUser);
 					
