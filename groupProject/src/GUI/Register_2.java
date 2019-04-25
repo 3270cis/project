@@ -31,7 +31,7 @@ public class Register_2 extends Application {
 	Label zipCode;
 	Label country;
 	Label phoneNumber;
-	Label Glad; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+	Label Glad; 
 	
 	Label username;
 	Label password;
@@ -69,6 +69,7 @@ public class Register_2 extends Application {
 	@Override
 	public void init() throws Exception {
 		
+		//initialize
 		super.init();
 	}
 	
@@ -246,6 +247,7 @@ public class Register_2 extends Application {
 	}
 	
 	public void clearTextFields() {
+		
 	firstNameInput.clear();
 	lastNameInput.clear();
 	SSNInput.clear();

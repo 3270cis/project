@@ -102,8 +102,7 @@ public class MainMenu_3 extends Application {
 		window.setTitle("HelloWorld Airlines Main Menu");
 		window.show();
 		
-		
-		
+	
 	}
 	
 
